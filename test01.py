@@ -5,7 +5,7 @@ from selenium.webdriver.common.by import By
 import json
 
 
-#Ejecutador del Codigo
+#Ejecutador del Driver
 
 PATH = "C:\\Program Files (x86)\\chromedriver.exe"
 
@@ -18,24 +18,25 @@ start_time = time.time()  # Tiempo de inicio de la ejecución
 
 driver = webdriver.Chrome(options=chrome_options)
 
-#URLsx
-# https://www.amigales.cl/revolution-plus-antiparasitario-gatos.html
-# https://www.amigales.cl/acana-prairie-poultry-perros.html
-# https://www.amigales.cl/acana-wild-coast-perros.html
+#URL Para Sacar Info
 
-url = "https://www.amigales.cl/acana-wild-coast-perros.html"
+url = "https://www.amigales.cl/acana-wild-coast-perros.html" #petdotu7
+
 driver.get(url)
 
 #XPATH ID cambiante para apretar boton y sacar texto
 
-urls = ['option-label-acana_wildcoast_perros-906-item-2334',
+direcciones = ['option-label-acana_wildcoast_perros-906-item-2334',
 'option-label-acana_wildcoast_perros-906-item-2335',
 'option-label-acana_wildcoast_perros-906-item-2336']
 
 #Apretar Boton#
+resultados=[]
 
-for url in urls:
-    lista = []
+
+#Apretar los 3 botones y sacar la info de cada uno en una URL
+for url in direcciones:
+
     boton = driver.find_element(By.ID,url)
     boton.click()
     time.sleep(5)
@@ -43,13 +44,19 @@ for url in urls:
     nombresku = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[1]/h1/span')
     precio = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[1]/span/span/span[2]/span') #Este XPATH debe ser siempre igual
     tipoalimento = driver.find_element(By.ID, url) #ESTE HAY QUE ENCONTRAR SIEMPRE
-    print(nombresku.text + " " + tipoalimento.text + " " + precio.text)
-    lista.extend([nombresku.text])
-    print(lista)
-
-
+    # print(nombresku.text + " " + tipoalimento.text + " " + precio.text)
+    
+    resultado_dict = {
+        'nombre': nombresku.text,
+        'tipo_alimento': tipoalimento.text,
+        'precio':precio.text
+    }
+    resultados.append(resultado_dict)
+    
+print(resultados)
+    
+#Quitar el Driver de Chrome
 driver.quit()
-
 
 # Calcula el tiempo de Ejecucion
 
