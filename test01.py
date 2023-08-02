@@ -3,7 +3,7 @@ from selenium.webdriver.chrome.options import Options
 import time
 from selenium.webdriver.common.by import By
 import json
-
+import pandas as pd
 
 #Ejecutador del Driver
 
@@ -67,6 +67,12 @@ driver.quit()
 
 with open("scraped_data01.json", "w") as f:
     json.dump(resultados, f, indent=4)
+
+# Crear un DataFrame desde la lista de resultados
+df_resultados = pd.DataFrame(resultados)
+
+# Exportar el DataFrame a un archivo Excel
+df_resultados.to_excel("scraped_data01.xlsx", index=False)
 
 # Calcula el tiempo de Ejecucion
 
