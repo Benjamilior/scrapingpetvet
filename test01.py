@@ -30,6 +30,10 @@ direcciones = ['option-label-acana_wildcoast_perros-906-item-2334',
 'option-label-acana_wildcoast_perros-906-item-2335',
 'option-label-acana_wildcoast_perros-906-item-2336']
 
+sku = {'option-label-acana_wildcoast_perros-906-item-2334':'petdotu101',
+'option-label-acana_wildcoast_perros-906-item-2335':'petdotu102',
+'option-label-acana_wildcoast_perros-906-item-2336': 'petdotu7'}
+
 #Apretar Boton#
 resultados=[]
 
@@ -45,8 +49,9 @@ for url in direcciones:
     precio = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[1]/span/span/span[2]/span') #Este XPATH debe ser siempre igual
     tipoalimento = driver.find_element(By.ID, url) #ESTE HAY QUE ENCONTRAR SIEMPRE
     # print(nombresku.text + " " + tipoalimento.text + " " + precio.text)
-    
+    sku_propuesto = sku.get(url, 'SKU Desconocido')  # Obtener el SKU propuesto del diccionario
     resultado_dict = {
+        'sku': sku_propuesto,
         'nombre': nombresku.text,
         'tipo_alimento': tipoalimento.text,
         'precio':precio.text
@@ -57,6 +62,11 @@ print(resultados)
     
 #Quitar el Driver de Chrome
 driver.quit()
+
+#Exportando Datos en JSON
+
+with open("scraped_data01.json", "w") as f:
+    json.dump(resultados, f, indent=4)
 
 # Calcula el tiempo de Ejecucion
 
