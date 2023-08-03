@@ -28,9 +28,10 @@ def scrape_website_data(url_def,direcciones_def):
 
     resultados = []
 
+    driver.get(url_def) #ojo aca habian problemas
 
     for url_def in direcciones_def:
-        driver.get(url) #ojo esta q
+       
         boton = driver.find_element(By.ID, url_def)
         boton.click()
 
@@ -74,21 +75,21 @@ df_resultados = pd.DataFrame(scraped_data)
 df_resultados.to_excel("scraped_data01.xlsx", index=False)
 
 
-# #Apoquel 
-# url2 = "https://www.amigales.cl/apoquel-zoetis-20-comprimidos.html"
-# direcciones2 = ["option-label-apoquel_zoetis_contenido-785-item-1983","option-label-apoquel_zoetis_contenido-785-item-1984","option-label-apoquel_zoetis_contenido-785-item-1985"]
-# scraped_data2 = scrape_website_data (url2, direcciones2)
+#Apoquel 
+url2 = "https://www.amigales.cl/apoquel-zoetis-20-comprimidos.html"
+direcciones2 = ["option-label-apoquel_zoetis_contenido-785-item-1983","option-label-apoquel_zoetis_contenido-785-item-1984","option-label-apoquel_zoetis_contenido-785-item-1985"]
+scraped_data2 = scrape_website_data (url2, direcciones2)
 # print(scraped_data2)
-# # Crear un DataFrame desde la lista de resultados
-# df_resultados = pd.DataFrame(scraped_data2)
-# # Exportar el DataFrame a un archivo Excel
-# df_resultados.to_excel("scraped_data02.xlsx", index=False)
+# Crear un DataFrame desde la lista de resultados
+df_resultados = pd.DataFrame(scraped_data2)
+# Exportar el DataFrame a un archivo Excel
+df_resultados.to_excel("scraped_data02.xlsx", index=False)
 
 
 
 # Calcula el tiempo de Ejecucion
 end_time = time.time()
 execution_time = end_time - start_time
-print("Tiempo de ejecución: %.2f segundos" % execution_time)
+# print("Tiempo de ejecución: %.2f segundos" % execution_time)
 
 
