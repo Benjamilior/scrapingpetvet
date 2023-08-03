@@ -21,8 +21,8 @@ driver = webdriver.Chrome(options=chrome_options)
 #URL Para Sacar Info
 
 url = "https://www.amigales.cl/acana-wild-coast-perros.html" #petdotu7
-
 driver.get(url)
+
 
 #XPATH ID cambiante para apretar boton y sacar texto
 
@@ -40,16 +40,17 @@ resultados=[]
 
 #Apretar los 3 botones y sacar la info de cada uno en una URL
 for url in direcciones:
-
+   
+    #Apretar Boton
     boton = driver.find_element(By.ID,url)
     boton.click()
-    time.sleep(5)
+    # time.sleep(5)
     #Seleccionar todos los Xpath Extradiables#
-    nombresku = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[1]/h1/span')
-    precio = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[1]/span/span/span[2]/span') #Este XPATH debe ser siempre igual
+    nombresku = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[1]/h1/span')# Puede Cambiar de URL a URL
+    precio = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[1]/span/span/span[2]/span') #Este XPATH debe ser (IDEALMENTE) siempre igual
     tipoalimento = driver.find_element(By.ID, url) #ESTE HAY QUE ENCONTRAR SIEMPRE
     # print(nombresku.text + " " + tipoalimento.text + " " + precio.text)
-    sku_propuesto = sku.get(url, 'SKU Desconocido')  # Obtener el SKU propuesto del diccionario
+    sku_propuesto = sku.get(url, 'SKU Desconocido')  # Obtener el SKU propuesto del diccionario de afuera
     resultado_dict = {
         'sku': sku_propuesto,
         'nombre': nombresku.text,
@@ -57,8 +58,14 @@ for url in direcciones:
         'precio':precio.text
     }
     resultados.append(resultado_dict)
+
     
 print(resultados)
+
+
+
+
+
     
 #Quitar el Driver de Chrome
 driver.quit()
