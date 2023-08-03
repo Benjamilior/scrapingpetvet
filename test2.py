@@ -5,23 +5,25 @@ import time
 import json
 import pandas as pd
 
+
+sku = {
+        'option-label-acana_wildcoast_perros-906-item-2334': 'petdotu101',
+        'option-label-acana_wildcoast_perros-906-item-2335': 'petdotu102',
+        'option-label-acana_wildcoast_perros-906-item-2336': 'petdotu7'
+}
+
+start_time = time.time()  # Tiempo de inicio de la ejecución
+
 def scrape_website_data(url_def,direccioness):
     # Configurar las opciones de Chrome
     chrome_options = Options()
     chrome_options.add_argument("--headless")  # Ver el Navegador
     chrome_options.add_argument("--window-size=1920x1080")
 
-    start_time = time.time()  # Tiempo de inicio de la ejecución
-
     driver = webdriver.Chrome(options=chrome_options)
 
     resultados = []
 
-    sku = {
-        'option-label-acana_wildcoast_perros-906-item-2334': 'petdotu101',
-        'option-label-acana_wildcoast_perros-906-item-2335': 'petdotu102',
-        'option-label-acana_wildcoast_perros-906-item-2336': 'petdotu7'
-    }
 
     for url_def in direcciones:
         driver.get(url)
@@ -54,15 +56,14 @@ def scrape_website_data(url_def,direccioness):
     # Exportar el DataFrame a un archivo Excel
     df_resultados.to_excel("scraped_data01.xlsx", index=False)
 
-    # Calcula el tiempo de Ejecucion
-    end_time = time.time()
-    execution_time = end_time - start_time
-    print("Tiempo de ejecución: %.2f segundos" % execution_time)
 
     return resultados
 
 #Ejecutar la función con la lista de URLs a procesar
 # url_list = ['https://www.amigales.cl/acana-wild-coast-perros.html']
+
+
+#Acana Wild Coast Perro
 url = 'https://www.amigales.cl/acana-wild-coast-perros.html'
 
 direcciones = ['option-label-acana_wildcoast_perros-906-item-2334',
@@ -70,7 +71,11 @@ direcciones = ['option-label-acana_wildcoast_perros-906-item-2334',
 'option-label-acana_wildcoast_perros-906-item-2336']
 
 
-
 scraped_data = scrape_website_data ("https://www.amigales.cl/acana-wild-coast-perros.html", direcciones)
 print(scraped_data)
 
+
+# Calcula el tiempo de Ejecucion
+end_time = time.time()
+execution_time = end_time - start_time
+print("Tiempo de ejecución: %.2f segundos" % execution_time)
