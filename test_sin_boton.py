@@ -1,18 +1,20 @@
 #Codigo para sacar el precio de producto donde la pagina no tiene boton 
+import json
+import time
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import time
 from selenium.webdriver.common.by import By
-import json
+
 
 #Ejecutador del Codigo
 
-PATH = "C:\\Program Files (x86)\\chromedriver.exe"
-
+# PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+PATH = "/usr/local/bin/chromedriver"
 # Configurar las opciones de Chrome
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Ver el Navegador
 chrome_options.add_argument("--window-size=1920x1080")
+chrome_options.add_argument("--timeout=120")
 
 start_time = time.time()  # Tiempo de inicio de la ejecución
 
@@ -101,10 +103,10 @@ for url in urls:
 driver.quit()
 
 
-# Save the results to a JSON file
+# # Save the results to a JSON file
 
-with open("scraped_data.json", "w") as f:
-    json.dump(results, f, indent=4)
+# with open("scraped_data.json", "w") as f:
+#     json.dump(results, f, indent=4)
 
 end_time = time.time()  # Tiempo de finalización de la ejecución
 

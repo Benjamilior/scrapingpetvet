@@ -5,9 +5,12 @@ from selenium.webdriver.common.by import By
 import json
 import pandas as pd
 
+
 #Ejecutador del Driver
 
-PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+# # PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+# PATH = "/Users/benjammunoz/Desktop/Dotu/chromedriver"
+PATH = "/usr/local/bin/chromedriver"
 
 # Configurar las opciones de Chrome
 chrome_options = Options()
@@ -40,7 +43,6 @@ resultados=[]
 
 #Apretar los 3 botones y sacar la info de cada uno en una URL
 for url in direcciones:
-   
     #Apretar Boton
     boton = driver.find_element(By.ID,url)
     boton.click()
@@ -72,22 +74,22 @@ driver.quit()
 
 #Exportando Datos en JSON
 
-with open("scraped_data01.json", "w") as f:
-    json.dump(resultados, f, indent=4)
+# with open("scraped_data01.json", "w") as f:
+#     json.dump(resultados, f, indent=4)
 
-# Crear un DataFrame desde la lista de resultados
-df_resultados = pd.DataFrame(resultados)
+# # Crear un DataFrame desde la lista de resultados
+# df_resultados = pd.DataFrame(resultados)
 
-# Exportar el DataFrame a un archivo Excel
-df_resultados.to_excel("scraped_data01.xlsx", index=False)
+# # Exportar el DataFrame a un archivo Excel
+# df_resultados.to_excel("scraped_data01.xlsx", index=False)
 
-# Calcula el tiempo de Ejecucion
+# # Calcula el tiempo de Ejecucion
 
-end_time = time.time()  
+# end_time = time.time()  
 
-execution_time = end_time - start_time
+# execution_time = end_time - start_time
 
-print("Tiempo de ejecución: %.2f segundos" % execution_time)
+# print("Tiempo de ejecución: %.2f segundos" % execution_time)
 
 
 

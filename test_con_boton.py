@@ -1,13 +1,18 @@
 #Codigo para sacar el precio de producto donde la pagina tiene Boton
+import time
+import json
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
-import time
 from selenium.webdriver.common.by import By
-import json
+
+
+
+
 
 #Ejecutador del Codigo
 
-PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+# PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+PATH = "/Users/benjammunoz/Desktop/Dotu/chromedriver.exe"
 
 # Configurar las opciones de Chrome
 chrome_options = Options()
