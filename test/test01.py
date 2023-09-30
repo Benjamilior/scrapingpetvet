@@ -48,6 +48,7 @@ for url in direcciones:
     boton.click()
     # time.sleep(5)
     #Seleccionar todos los Xpath Extradiables#
+    
     nombresku = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[1]/h1/span')# Puede Cambiar de URL a URL
     precio = driver.find_element("xpath", '/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[1]/span/span/span[2]/span') #Este XPATH debe ser (IDEALMENTE) siempre igual
     tipoalimento = driver.find_element(By.ID, url) #ESTE HAY QUE ENCONTRAR SIEMPRE
@@ -71,6 +72,7 @@ print(resultados)
     
 #Quitar el Driver de Chrome
 driver.quit()
+
 
 #Exportando Datos en JSON
 
