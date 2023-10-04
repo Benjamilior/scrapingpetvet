@@ -1,26 +1,17 @@
 import json
 import time
-import datetime
 from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import pandas as pd
-
+import requests
+import datetime
+import json
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
-
-#Google Sheets
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-KEY = '../key.json'
-SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg'
-creds = None
-creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
-service = build('sheets', 'v4', credentials=creds)
-sheet = service.spreadsheets()
-
 
 # PATH = "C:\\Program Files (x86)\\chromedriver.exe"
 PATH = "/usr/local/bin/chromedriver"
@@ -28,16 +19,23 @@ PATH = "/usr/local/bin/chromedriver"
 chrome_options = Options()
 chrome_options.add_argument("--headless")  # Ver el Navegador
 chrome_options.add_argument("--window-size=1920x1080")
+
 start_time = time.time()  # Tiempo de inicio de la ejecución
+
 driver = webdriver.Chrome(options=chrome_options)
 
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+KEY = '../key.json'
+SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg'
 
+creds = None
+creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
 
+service = build('sheets', 'v4', credentials=creds)
+sheet = service.spreadsheets()
 
 #URLs
-
 urls = ["https://www.petclick.cl/medicamentos/452-apoquel-36mg-comprimidos-5414736044194.html"]
-
 urls2 = [
     "https://www.petclick.cl/medicamentos/453-apoquel-16mg-comprimidos-5414736044217.html",
     "https://www.petclick.cl/medicamentos/452-apoquel-36mg-comprimidos-5414736044194.html",
@@ -109,7 +107,7 @@ urls2 = [
     "https://www.petclick.cl/antiparasitarios/85-669-nexgard-spectra-76-a-15kg.html#/119-envase-1_comprimido",
     "https://www.petclick.cl/antiparasitarios/86-671-nexgard-spectra-15-a-30kg.html#/119-envase-1_comprimido"
 ]
-sku1= {"petdotu1": "https://www.petclick.cl/medicamentos/453-apoquel-16mg-comprimidos-5414736044217.html"}
+sku2 = {"petdotu1": "https://www.petclick.cl/medicamentos/453-apoquel-16mg-comprimidos-5414736044217.html"}
 sku = {
     "petdotu1": "https://www.petclick.cl/medicamentos/453-apoquel-16mg-comprimidos-5414736044217.html",
     "petdotu2": "https://www.petclick.cl/medicamentos/452-apoquel-36mg-comprimidos-5414736044194.html",
@@ -184,53 +182,53 @@ sku = {
 
 results = []
 
+
 for sku_key, url in sku.items():
     driver.get(url)
     try:
         nombresku = driver.find_element("xpath", '/html/body/main/section/div/div/div/section/div[1]/div[2]/h1') # Cambiar 
         precio = driver.find_element("xpath", '/html/body/main/section/div/div/div/section/div[1]/div[2]/div[1]/div[1]/div/span') # Cambiar
+        
         data = {
             "SKU":sku_key,
             "Nombre SKU": nombresku.text,
             "Precio": precio.text,
-              # Si deseas almacenar la URL junto con los datos
         }
         results.append(data)
+        
     except Exception as e:
         print(f"Error en la URL {url} - {e}")
 
 driver.quit()
 
+# # Save the results to a JSON file
 
+# with open("scraped_data.json", "w") as f:
+#     json.dump(results, f, indent=4)
 df = pd.DataFrame(results)
 
 # Guardar el DataFrame en un archivo Excel
-# nombre_archivo = "datos_productos.xlsx"  # Nombre del archivo Excel
-# df.to_excel(nombre_archivo, index=False)  # El parámetro index=False evita que se incluyan los índices en el archivo Excel
-# print(f"Datos guardados en {nombre_archivo}")
+
+nombre_archivo = "datos_productos.xlsx"  # Nombre del archivo Excel
+df.to_excel(nombre_archivo, index=False)  # El parámetro index=False evita que se incluyan los índices en el archivo Excel
+
+print(f"Datos guardados en {nombre_archivo}")
 
 
 end_time = time.time()  # Tiempo de finalización de la ejecución
+
 execution_time = end_time - start_time
+
 print("Tiempo de ejecución: %.2f segundos" % execution_time)
 
-#Fecha de Extraccion
-now = datetime.datetime.now()
-now_str = now.strftime('%Y-%m-%d %H:%M:%S')
-data = {"":now_str}
-json_data = json.dumps(data)
-values = [[json_data]]
-result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
-							range='petclick!F2',#CAMBIAR
-							valueInputOption='USER_ENTERED',
-							body={'values':values}).execute()
 
-
-#Valores que se pasan a Sheets
+# Debe ser una matriz por eso el doble [[]]
 values = [[item['SKU'], item['Nombre SKU'], item['Precio']] for item in results]
+# Llamamos a la api
 result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
-							range='petclick!A2:C83',#CAMBIAR
+							range='petclick!A:C',
 							valueInputOption='USER_ENTERED',
 							body={'values':values}).execute()
-print(f"Datos insertados correctamente")
 
+
+print(f"Datos insertados correctamente")
