@@ -160,7 +160,7 @@ sku = {
     "petdotu100": "https://www.amigales.cl/phisio-anti-olor-auricular.html",
     "petdotu96": "https://www.amigales.cl/collar-adaptil.html"
 }
-sku2 = {"petdotu5": "https://www.amigales.cl/revolution-plus-antiparasitario-gatos.html"}
+sku1 = {"petdotu5": "https://www.amigales.cl/revolution-plus-antiparasitario-gatos.html"}
 results = []
 
 #Tipo 1

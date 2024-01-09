@@ -248,26 +248,6 @@ data = {"":now_str}
 json_data = json.dumps(data)
 values = [[json_data]]
 result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
-							range='petclick!F2',#CAMBIAR
-							valueInputOption='USER_ENTERED',
-							body={'values':values}).execute()
-
-
-#Valores que se pasan a Sheets
-values = [[item['SKU'], item['Nombre SKU'], item['Precio']] for item in results]
-result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
-							range='petclick!A2:C83',#CAMBIAR
-							valueInputOption='USER_ENTERED',
-							body={'values':values}).execute()
-print(f"Datos insertados correctamente")
-
-#Fecha de Extraccion
-now = datetime.datetime.now()
-now_str = now.strftime('%Y-%m-%d %H:%M:%S')
-data = {"":now_str}
-json_data = json.dumps(data)
-values = [[json_data]]
-result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 							range='bestforpets!F2',#CAMBIAR
 							valueInputOption='USER_ENTERED',
 							body={'values':values}).execute()
@@ -280,3 +260,23 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 							valueInputOption='USER_ENTERED',
 							body={'values':values}).execute()
 print(f"Datos insertados correctamente")
+
+# #Fecha de Extraccion
+# now = datetime.datetime.now()
+# now_str = now.strftime('%Y-%m-%d %H:%M:%S')
+# data = {"":now_str}
+# json_data = json.dumps(data)
+# values = [[json_data]]
+# result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+# 							range='bestforpets!F2',#CAMBIAR
+# 							valueInputOption='USER_ENTERED',
+# 							body={'values':values}).execute()
+
+
+# #Valores que se pasan a Sheets
+# values = [[item['SKU'], item['Nombre SKU'], item['Precio']] for item in results]
+# result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+# 							range='bestforpets!A2:C83',#CAMBIAR
+# 							valueInputOption='USER_ENTERED',
+# 							body={'values':values}).execute()
+# print(f"Datos insertados correctamente")

@@ -110,7 +110,7 @@ urls2 = [
     "https://www.petclick.cl/antiparasitarios/86-671-nexgard-spectra-15-a-30kg.html#/119-envase-1_comprimido"
 ]
 sku1= {"petdotu1": "https://www.petclick.cl/medicamentos/453-apoquel-16mg-comprimidos-5414736044217.html"}
-sku = {
+sku= {
     "petdotu1": "https://www.petclick.cl/medicamentos/453-apoquel-16mg-comprimidos-5414736044217.html",
     "petdotu2": "https://www.petclick.cl/medicamentos/452-apoquel-36mg-comprimidos-5414736044194.html",
     "petdotu3": "https://www.petclick.cl/medicamentos/466-apoquel-54mg-comprimidos-5414736044200.html",
@@ -196,6 +196,8 @@ for sku_key, url in sku.items():
               # Si deseas almacenar la URL junto con los datos
         }
         results.append(data)
+        
+        print(data)
     except Exception as e:
         print(f"Error en la URL {url} - {e}")
 
