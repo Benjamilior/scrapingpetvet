@@ -14,7 +14,7 @@ import datetime
 
 #Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-KEY = '../key.json'
+KEY = 'key.json'
 SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg'
 creds = None
 creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
@@ -91,7 +91,7 @@ tipo3 = ["https://www.centralvet.cl/inicio/21072-21305-brit-care-perro-adulto-me
 "https://www.centralvet.cl/alimentos/23807-23083-brit-care-gato-esterilizado-urinary-health-pollo-fresco-.html#/1111111131-peso-2_kg"]
 
 sku = {
-    "petdotu1": "https://www.centralvet.cl/farmacia-veterinaria/21003-apoquel-16-mg-zoetis-20-comprimidos-venta-con-receta.html",
+    "petdotu1": "https://www.centralvet.cl/farmaciaveterinaria/21003apoquel16mgzoetis20comprimidosventaconreceta.html",
     "petdotu2": "https://www.centralvet.cl/farmacia-veterinaria/21001-apoquel-36mg-zoetis-venta-con-receta.html",
     "petdotu3": "https://www.centralvet.cl/farmacia-veterinaria/21002-apoquel-54mg-zoetis-venta-con-receta.html",
     "petdotu4": "https://www.centralvet.cl/higiene-para-gatos/23523-revolution-plus-para-gatos-entre-25-y-5-kg-antiparasitario-zoetis.html",

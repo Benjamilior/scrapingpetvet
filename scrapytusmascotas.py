@@ -1,22 +1,4 @@
-#Codigo para sacar el precio de producto donde la pagina no tiene boton 
-import time
-from selenium import webdriver
-from selenium.webdriver.chrome.options import Options
-from selenium.webdriver.common.by import By
 
-
-#Ejecutador del Codigo
-
-# PATH = "C:\\Program Files (x86)\\chromedriver.exe"
-PATH = "/usr/local/bin/chromedriver"
-# Configurar las opciones de Chrome
-chrome_options = Options()
-chrome_options.add_argument("--headless")  # Ver el Navegador
-chrome_options.add_argument("--window-size=1920x1080")
-
-start_time = time.time()  # Tiempo de inicio de la ejecución
-
-driver = webdriver.Chrome(options=chrome_options)
 
 
 direccionestipo2 = ["/html/body/main/section/div[2]/div/section/div[2]/div[1]/div[2]/div[2]/div[2]/form/div[1]/div/ul/li[1]/input",
@@ -186,85 +168,95 @@ sku = {
 }
 sku1 = {"petdotu1": "https://www.tusmascotas.cl/product/apoquel-16mg-oclacitinib/"}
 
-#Tipo 1
 
-for url in tipo1:
+#No olvidarse del key.json
+#Buscar todos los "Cambiar" antes de usar
+#En chatgpt cruzar sku_dotu con links. Pedir que te haga el json desde el info del sheets
+import json
+import time
+import datetime
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import pandas as pd
 
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
+
+#Google Sheets
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+KEY = 'key.json' #Cambiar check
+SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg' #Cambiar check
+creds = None
+creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
+service = build('sheets', 'v4', credentials=creds)
+sheet = service.spreadsheets()
+
+
+# PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+PATH = "/usr/local/bin/chromedriver"
+# Configurar las opciones de Chrome
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Ver el Navegador
+chrome_options.add_argument("--window-size=1920x1080")
+start_time = time.time()  # Tiempo de inicio de la ejecución
+driver = webdriver.Chrome(options=chrome_options)
+
+
+
+results = []
+
+for sku_key, url in sku.items(): #Puede cambiar
     driver.get(url)
     try:
-        nombresku = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/h1') #CAMBIAR
-        # precio = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[3]/div/div/div/div[1]/div/div[1]/div/div/div/span[1]/ins/span/bdi')#CAMBIAR
-        precio = driver.find_element(By.CLASS_NAME,"rrp-sale")
-        
+        # nombresku = driver.find_element("xpath", '/html/body/div[1]/section[1]/div[1]/div[2]/div/h1/span[2]') # Cambiar check
+        precio = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/ins/span') # Cambiar check
         data = {
-                "Nombre SKU": nombresku.text,
-                "Precio": precio.text
-            }
-
-            # Add the dictionary to the results list
+            "SKU":sku_key,
+            "Precio": precio.text,
+              # Si deseas almacenar la URL junto con los datos
+        }
         results.append(data)
-
-    except Exception as e:
-        print(f"No hay Stock de {url}: {str(e)}")
-
-#Tipo 2
-# for i in direccionestipo2:
-#     for a in tipo2:
-#         driver.get(a)  # Cambia la URL para cada botón
-
-#         # Apretar el botón correspondiente
-#         boton = driver.find_element(By.XPATH, i)  # Puedes usar "url" para ubicar el botón si es único en cada página
-#         boton.click()
-#         time.sleep(1)
-
-#         # Seleccionar todos los Xpath Extradiables
-#         nombresku = driver.find_element(By.XPATH, '/html/body/main/section/div[2]/div/section/div[2]/div[1]/div[2]/div[1]/h1/span')
-#         price = driver.find_element_by_class_name('product-price')
-#         tipoalimento = driver.find_element(By.XPATH, i)
-
-#         resultado_dict = {
-#             'nombre': nombresku.text,
-#             'tipo_alimento': tipoalimento.text,
-#             'precio': price.text
-#         }
-#         results.append(resultado_dict)
-
-#Tipo 3
-# for i in direccionestipo3:
-#     for a in tipo3:
-#         driver.get(a)  # Cambia la URL para cada botón
-
-#         # Apretar el botón correspondiente
-#         boton = driver.find_element(By.XPATH, i)  # Puedes usar "url" para ubicar el botón si es único en cada página
-#         boton.click()
-#         time.sleep(1)
-
-#         # Seleccionar todos los Xpath Extradiables
-#         nombresku = driver.find_element(By.XPATH, '/html/body/main/section/div[2]/div/section/div[2]/div[1]/div[2]/div[1]/h1/span')
-#         price = driver.find_element_by_class_name('product-price')
-#         tipoalimento = driver.find_element(By.XPATH, i)
-
-#         resultado_dict = {
-#             'nombre': nombresku.text,
-#             'tipo_alimento': tipoalimento.text,
-#             'precio': price.text
-#         }
-#         results.append(resultado_dict)
         
-#Tipo 4
-
-#Tipo 5
-
-#Tipo 6
-
+        print(data)
+    except Exception as e:
+        print(f"Error en la URL {url} - {e}")
 
 driver.quit()
 
-print(results)
+
+df = pd.DataFrame(results)
+
+# Guardar el DataFrame en un archivo Excel
+# nombre_archivo = "datos_productos.xlsx"  # Nombre del archivo Excel
+# df.to_excel(nombre_archivo, index=False)  # El parámetro index=False evita que se incluyan los índices en el archivo Excel
+# print(f"Datos guardados en {nombre_archivo}")
+
+
 end_time = time.time()  # Tiempo de finalización de la ejecución
-
 execution_time = end_time - start_time
-
 print("Tiempo de ejecución: %.2f segundos" % execution_time)
 
-      
+#Fecha de Extraccion
+now = datetime.datetime.now()
+now_str = now.strftime('%Y-%m-%d %H:%M:%S')
+data = {"":now_str}
+json_data = json.dumps(data)
+values = [[json_data]]
+result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+							range='tusmascotas!F2',#CAMBIAR
+							valueInputOption='USER_ENTERED',
+							body={'values':values}).execute()
+
+
+#Valores que se pasan a Sheets
+values = [[item['SKU'], item['Precio']] for item in results]
+result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+							range='tusmascotas!A2:C83',#CAMBIAR
+							valueInputOption='USER_ENTERED',
+							body={'values':values}).execute()
+print(f"Datos insertados correctamente")
+

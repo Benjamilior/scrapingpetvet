@@ -14,7 +14,7 @@ from google.oauth2 import service_account
 
 #Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-KEY = '../key.json'
+KEY = 'key.json'
 SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg'
 creds = None
 creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)

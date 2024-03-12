@@ -14,8 +14,8 @@ import datetime
 
 #Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-KEY = '../key.json'
-SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg'
+KEY = 'key.json'
+SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg' #Cambiar
 creds = None
 creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
 service = build('sheets', 'v4', credentials=creds)
