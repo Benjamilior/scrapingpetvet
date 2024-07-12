@@ -42,62 +42,63 @@ driver = webdriver.Chrome(options=chrome_options)
 results = []
 
 sku = {
-    "petdotu4": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/controlparasitario/pipetarevolutiongatosplus255kg/",
-    "petdotu5": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/controlparasitario/pipetarevolutiongatosplus12525kg/",
-    "petdotu9": "https://www.clubdeperrosygatos.cl/shop/alimento/alimentoparagatos/acanaparagatos/comecanacanabountifulcatchcat45kg/",
-    "petdotu10": "https://www.clubdeperrosygatos.cl/shop/alimento/alimentoparagatos/acanaparagatos/comecanacanafirstfeastcat18kg/",
-    "petdotu16": "https://www.clubdeperrosygatos.cl/shop/alimento/alimentoparaperros/fitformulaparaperros/fitformulaalimentoperrosenior20kg/",
-    "petdotu17": "https://www.clubdeperrosygatos.cl/shop/alimento/alimentoparaperros/fitformulaparaperros/fitformulaalimentoperroadulto20kg/",
-    "petdotu18": "https://www.clubdeperrosygatos.cl/shop/alimento/alimentoparaperros/fitformulaparaperros/fitformulaalimentoperrocachorro10kg/",
-    "petdotu26": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/farmaciaconreceta/rimadylantiinflamatorio60comprimidos/",
-    "petdotu27": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/farmaciaconreceta/rimadylantiinflamatorio14comprimidos/",
-    "petdotu34": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/calming-spot-on-gatos/",
-    "petdotu36": "https://www.clubdeperrosygatos.cl/shop/alimento/snacksperrosygatos/snacksparagatos/masticablesgato/beapharcalmingcattreats/",
-    "petdotu37": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/antiestresyrelajacion/calmingcollargato/",
-    "petdotu38": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/calmingtablets20comp/",
+    "petdotu97": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/adaptil-collar-perros-reductor-estres-s-m/",
+    "petdotu96": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/adaptil-collar-perros-reductor-estres-s-m/",
+    "petdotu9": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-gatos/acana-para-gatos/comecan-acana-bountiful-catch-cat-4-5-kg/",
+    "petdotu82": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/artri-tabs-para-articulaciones-60-comprimidos/",
+    "petdotu93": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/adaptil-reductor-estres-difusor-repuesto-48-ml/",
+    "petdotu42": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/entrenamiento-salud-y-bienestar/feliway-difusor-repuesto-feromonas-48-ml/",
+    "petdotu43": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/feliway-friends-difusor-repuesto-feromonas-48-ml-2/",
+    "petdotu4": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/control-parasitario/pipeta-revolution-gatos-plus-2-5-5-kg/",
+    "petdotu5": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/control-parasitario/pipeta-revolution-gatos-plus-1-25-2-5-kg/",
+    "petdotu66": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/laveta-taurina-50ml/",
+    "petdotu65": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/laveta-carnitina-50ml/",
+    "petdotu40": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/anti-estres-y-relajacion/feliway-spray-60ml/",
     "petdotu39": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/entrenamiento-salud-y-bienestar/feliway-difusor-repuesto-feromonas-48-ml-2/",
-    "petdotu40": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/antiestresyrelajacion/feliwayspray60ml/",
-    "petdotu41": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/feliwayfriendsdifusorrepuestoferomonas48ml/",
-    "petdotu42": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/entrenamientosaludybienestar/feliwaydifusorrepuestoferomonas48ml/",
-    "petdotu43": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/feliwayfriendsdifusorrepuestoferomonas48ml2/",
-    "petdotu44": "https://www.clubdeperrosygatos.cl/shop/alimento/alimentoparagatos/royalcaninparagatos/royalcaninmotherbabycat15kg/",
-    "petdotu46": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-perros/royal-canin/royal-canin-mini-junior-1-kg/",
     "petdotu47": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-perros/royal-canin/royal-canin-mini-adult-8-3kg/",
-    "petdotu65": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/lavetacarnitina50ml/",
-    "petdotu66": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/lavetataurina50ml/",
-    "petdotu71": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/florafixpet/",
+    "petdotu83": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/condrovet-de-30-comprimidos/",
+    "petdotu84": "https://www.clubdeperrosygatos.cl/shop/regalos/cat-lovers/america-litter-ultra-odor-seal/",
+    "petdotu77": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/oxtrin-30-comprimidos/",
+    "petdotu98": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/higiene-y-belleza/virbac-shampo-medicado-250ml-allercalm-avena/",
+    "petdotu10": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-gatos/acana-para-gatos/comecan-acana-first-feast-cat-1-8-kg/",
+    "petdotu41": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/feliway-friends-difusor-repuesto-feromonas-48-ml/",
+    "petdotu34": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/calming-spot-on-gatos/",
+    "petdotu86": "https://www.clubdeperrosygatos.cl/shop/alimento/snacks-perros-y-gatos/snacks-para-perros/masticables-perro/wanpy-beef-jerky/",
+    "petdotu27": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/rimadyl-anti-inflamatorio-14-comprimidos/",
+    "petdotu18": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-perros/fit-formula-para-perros/fit-formula-alimento-perro-cachorro/",
+    "petdotu44": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-gatos/royal-canin-para-gatos/royal-canin-mother-babycat-1-5-kg/",
+    "petdotu36": "https://www.clubdeperrosygatos.cl/shop/alimento/snacks-perros-y-gatos/snacks-para-gatos/masticables-gato/beaphar-calming-cat-treats/",
+    "petdotu94": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/anti-estres-y-relajacion/holliday-ohm-modulador-de-ansiedad/",
+    "petdotu81": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/vetarom-calmer-efecto-ansiolitico-natural/",
     "petdotu72": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/arenas-sanitarias/arena-america-litter-lavanda-15-kg/",
-    "petdotu77": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/oxtrin30comprimidos/",
-    "petdotu79": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/farmaciaconreceta/synulox200mgamox50mgacclv10comp/",
-    "petdotu81": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/vetaromcalmerefectoansioliticonatural/",
-    "petdotu82": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/artritabsparaarticulaciones60comprimidos/",
-    "petdotu83": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/condrovetde30comprimidos/",
-    "petdotu84": "https://www.clubdeperrosygatos.cl/shop/regalos/catlovers/americalitterultraodorseal/",
-    "petdotu85": "https://www.clubdeperrosygatos.cl/shop/alimento/alimentoparaperros/hills/hillsrdreduccionpesocanino798kg/",
-    "petdotu86": "https://www.clubdeperrosygatos.cl/shop/alimento/snacksperrosygatos/snacksparaperros/masticablesperro/wanpybeefjerky/",
+    "petdotu15": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-gatos/fit-formula/fit-formula-alimento-gato-adulto/",
+    "petdotu89": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/sucravet-antiacido-100-ml/",
+    "petdotu37": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/anti-estres-y-relajacion/calming-collar-gato/",
+    "petdotu16": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-perros/fit-formula-para-perros/fit-formula-alimento-perro-senior-20-kg/",
+    "petdotu79": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/synulox-200-mg-amox-50-mg-ac-clv-10-comp/",
+    "petdotu92": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/ursovet-susp-oral-60-ml/",
+    "petdotu17": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-perros/fit-formula-para-perros/fit-formula-alimento-perro-adulto-20-kg/",
+    "petdotu38": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/calming-tablets-20-comp/",
+    "petdotu71": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/flora-fix-pet/",
+    "petdotu75": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/naxpet-suspension-oral-20ml/",
+    "petdotu26": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/rimadyl-anti-inflamatorio-60-comprimidos/",
     "petdotu87": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/itraskin-2-susp-oral-120-ml/",
-    "petdotu89": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/farmaciaconreceta/sucravetantiacido100ml/",
     "petdotu91": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/dermisolona-susp-oral-0-4-x-30ml/",
-    "petdotu92": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/farmaciaconreceta/ursovetsusporal60ml/",
-    "petdotu93": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/adaptilreductorestresdifusorrepuesto48ml/",
-    "petdotu94": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/antiestresyrelajacion/hollidayohmmoduladordeansiedad/",
-    "petdotu95": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/farmaciaconreceta/dermisolona20mg10comprimidos/",
-    "petdotu96": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/adaptilcollarperrosreductorestressm/",
-    "petdotu97": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/adaptilcollarperrosreductorestresml/",
-    "petdotu98": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/higieneybelleza/virbacshampomedicado250mlallercalmavena/",
-    "petdotu99": "https://www.clubdeperrosygatos.cl/shop/alimento/alimento-para-perros/hills/hills-r-d-canino-3-8-kg/",
-    "petdotu100": "https://www.clubdeperrosygatos.cl/shop/saludybienestar/farmaciaperrosygatos/virbacphisioantiolorparaorejas100ml/"
+    "petdotu95": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/farmacia-con-receta/dermisolona-20-mg-10-comprimidos/",
+    "petdotu100": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/virbac-phisio-anti-olor-para-orejas-100ml/"
 }
 
+sku2 = { "petdotu4": "https://www.clubdeperrosygatos.cl/shop/salud-y-bienestar/farmacia-perros-y-gatos/artri-tabs-para-articulaciones-60-comprimidos/"}
 results = []
 
 for sku_key, url in sku.items():
     driver.get(url)
     precio_oferta = "No disponible"
     precio_normal = "No disponible"
+    time.sleep(3)
     try:
         # Intenta obtener el precio de oferta
-        precio_oferta_element = driver.find_element("xpath", '/html/body/div[3]/div[2]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p/del/span') #Cambiar
+        precio_oferta_element = driver.find_element("xpath", '/html/body/div[1]/div[2]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p/del/span') #Cambiar
         precio_oferta = precio_oferta_element.text  # Guarda el precio de oferta
     except NoSuchElementException:
         pass  # Si no se encuentra el precio de oferta, se continuará con el siguiente bloque de código
@@ -154,3 +155,36 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 							body={'values':values}).execute()
 print(f"Datos insertados correctamente")
 
+df = pd.DataFrame(results)
+print(df)
+print(df.head)
+
+
+competitor = "Club"  # Cambiar 
+# Enviar datos a otro Google Sheets
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+KEY = 'key.json'
+NEW_SPREADSHEET_ID = '1lLfl_jSGUEtitfsezo_zz53Bn2zAzID73VtxIi4dKRo'  # ID de la nueva hoja de cálculo
+
+creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
+service = build('sheets', 'v4', credentials=creds)
+sheet = service.spreadsheets()
+
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='petvet!A:A').execute() #Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[row['SKU'], "No disponible",competitor, row['Precio'], now_str] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+
+print(f"Datos insertados correctamente en la nueva hoja de Google Sheets en el rango {update_range}")

@@ -2,16 +2,20 @@ import os
 
 # Lista de nombres de los scripts que deseas ejecutar
 scripts = [
-    "scrapyamigales.py",
+    "superzoobackup.py",
     "scrapybestforpets.py",
     "scrapybigos.py",
     "scrapybraloy.py",
     "scrapycentralvet.py",
     "scrapypetclick.py",
     "scrapypunto.py",
-    "scrapysuperzoo.py",
+    "petvet.py",
+    "scrapytusmascotas.py",
+    "petco.py",
+    "amigales.py"
 ]
 
+    # "club.py",
 # Iteramos sobre la lista de scripts y los ejecutamos uno por uno
 for script in scripts:
     # Construimos la ruta completa al script
