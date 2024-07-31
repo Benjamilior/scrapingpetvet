@@ -159,8 +159,6 @@ sku= {
     "petdotu178": "https://www.petclick.cl/medicamentos/647-canigest-combi-16ml.html",
     "petdotu162": "https://www.petclick.cl/medicamentos/517-meloxivet-60ml-7800006010330.html#:~:text=Meloxivet%20es%20un%20antiinflamatorio%20no,a%20la%20osteoartritis%20en%20perros.",
     "petdotu167": "https://www.petclick.cl/medicamentos/313-clindabone-165mg-comprimidos-7800006006364.html",
-    "petdotu168": "https://www.petclick.cl/antiparasitarios/727-broadline-pipeta-gatos-25-a-75kg-7809599502086.html",
-    "petdotu204": "https://www.petclick.cl/antiparasitarios/726-broadline-pipeta-gatos-06-a-25kg-7809599502154.html",
     "petdotu173": "https://www.petclick.cl/alimento-para-gatos/81-proplan-urinary-cat-75kg-7613039947739.html",
     "petdotu174": "https://www.petclick.cl/medicamentos/910-nutribound-perros-150ml-7502010426861.html",
     "petdotu179": "https://www.petclick.cl/shampoos-medicados/242-regepipel-plus-shampoo-150ml.html#:~:text=Regepipel%20Plus%20es%20un%20shampoo,canis%20en%20perros%20y%20gatos.",
@@ -177,10 +175,11 @@ sku= {
     "petdotu205": "https://www.petclick.cl/entrenamiento-y-comportamiento/653-adaptil-calm-repuesto-48ml-3411112169344.html",
     "petdotu206": "https://www.petclick.cl/medicamentos/645-papainpet-comprimidos-7800006010170.html",
     "petdotu207": "https://www.petclick.cl/medicamentos/530-silimadrag-suspension-oral-120ml-7800006010217.html",
-    "petdotu208": "https://www.petclick.cl/medicamentos/456-hemolitan-pet-30ml-7898053580234.html",
+    "petdotu208": "https://www.petclick.cl/medicamentos/456-463-hemolitan-pet-30ml-7898053580234.html#/110-envase-60ml",
     "petdotu46": "https://www.petclick.cl/alimento-para-perros/38-18-royal-canin-puppy-mini-7896181218937.html#/15-tamano-25kg",
     "petdotu47": "https://www.petclick.cl/alimento-para-perros/34-849-royal-canin-mini-adulto-3182550402170.html#/15-tamano-25kg",
-    "petdotu184": "https://www.petclick.cl/alimento-para-perros/11-78-proplan-adult-razas-pequenas-7613287029195.html#/1-tamano-3kg"
+    "petdotu184": "https://www.petclick.cl/alimento-para-perros/11-78-proplan-adult-razas-pequenas-7613287029195.html#/1-tamano-3kg",
+    "petdotu13":"https://www.petclick.cl/alimento-para-perros/650-fit-formula-light-20kg.html"
 }
 
 sku2= {"petdotu1233": "https://www.petclick.cl/medicamentos/358-ursovet-jarabe-60ml-7800006007033.html"}

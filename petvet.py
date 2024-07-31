@@ -52,8 +52,6 @@ urls = {
     "43893233680545": "https://petvet.cl/products/nutrience-original-gato-adulto.js",
     "43785612230817": "https://petvet.cl/products/virbac-hpm-allergy-cat-3-kg.js",
     "42392893620385": "https://petvet.cl/products/clindabone-165-mg-x-20-comp.js",
-    "43244305186977": "https://petvet.cl/products/broadline-gatos-0-9ml-2-7-7-5-kg.js",
-    "41248220971169": "https://petvet.cl/products/broadnine-0-3.js",
     "43899298611361": "https://petvet.cl/products/bravery-perro-cachorro-pollo-razas-mediana-y-grandes.js",
     "43596331090081": "https://petvet.cl/products/pro-plan-gato-urinario.js",
     "42463321850017": "https://petvet.cl/products/nutribound-perro-150-ml.js",
@@ -226,10 +224,14 @@ urls = {
     "41857461190817": "https://petvet.cl/products/oftavet-5-ml.js",
     "43830826074273": "https://petvet.cl/products/hemolivet-30-comprimidos.js",
     "42366871928993": "https://petvet.cl/products/cerenia-24-mg-x-4-comp.js",
-    "43591189987489": "https://petvet.cl/products/canigest-combi-32ml.js"
+    "43591189987489": "https://petvet.cl/products/canigest-combi-32ml.js",
+    "44309699166369":"https://petvet.cl/products/fit-formula-light-20-kg.js",
+    "44430172684449":"https://petvet.cl/products/nexgard-combo-gato-1-pipeta-0-8-2-5-kg.js",
+    "44427832033441":"https://petvet.cl/products/nexgard-combo-gato-1-pipeta-2-5-7-5-kg.js"
+    
 }
 
-urls2={"43111864369313": "https://petvet.cl/products/acana-puppy-junior-perro.js"}
+urls2={  "44427832033441":"https://petvet.cl/products/nexgard-combo-gato-1-pipeta-2-5-7-5-kg.js"}
 # Headers para las solicitudes
 headers = {
     "cookie": "secure_customer_sig=; _tracking_consent=%257B%2522con%2522%253A%257B%2522CMP%2522%253A%2522%2522%252C%2522a%2522%253A%2522%2522%252C%2522p%2522%253A%2522%2522%252C%2522s%2522%253A%2522%2522%257D%257D%252C%2522v%2522%253A%25222.1%2522%252C%2522region%2522%253A%2522CLRM%2522%252C%2522reg%2522%253A%2522%2522%257D; _shopify_y=6e06c95b-88fa-4ce0-b0ea-a8fba8fdf7ac; _shopify_s=a1dae16c-7a4c-468b-a001-ce827f8c08a9",
@@ -319,6 +321,7 @@ last_row = len(values) + 1  # Obtener el índice de la última fila vacía
 values = [[row['SKU'], competitor, "No Disponible", row['Price'], now_str] for _, row in df.iterrows()]
 
 # Insertar los resultados en la nueva hoja después de la última fila
+print(values)
 update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
 result = sheet.values().update(
     spreadsheetId=NEW_SPREADSHEET_ID,

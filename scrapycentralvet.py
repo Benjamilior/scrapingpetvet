@@ -139,8 +139,7 @@ sku = {
     "petdotu178": "https://www.centralvet.cl/farmacia-para-perros/24059-canigest-combi-pasta-16-ml-probiotico-para-mascotas.html",
     "petdotu165": "https://www.centralvet.cl/gatos-adultos/14724-20824-nutrience-original-gatos-adultos-polloarroz-integral.html#/1111111116-peso-25_kg",
     "petdotu167": "https://www.centralvet.cl/farmacia-para-perros/6022-clindabone-clindamicina-165-mg-caja-20-comprimidos.html",
-    "petdotu204": "https://www.centralvet.cl/inicio/22672-broadline-antiparasitario-interno-y-externo-para-gatitos-entre-06-a-25-kg-boehringer-oferta.html",
-    "petdotu171": "https://www.centralvet.cl/alimentos/21804-20888-bravery-chicken-perro-adulto-mediumlarge-breed.html#/1111111130-peso-12_kg",
+   "petdotu171": "https://www.centralvet.cl/alimentos/21804-20888-bravery-chicken-perro-adulto-mediumlarge-breed.html#/1111111130-peso-12_kg",
     "petdotu173": "https://www.centralvet.cl/alimentos-de-prescripcion-veterinaria-gatos/20639-pro-plan-gato-urinary-optitract-75-kg.html",
     "petdotu174": "https://www.centralvet.cl/laboratorio-virbac/21629-nutribound-perros-150-ml-virbac.html",
     "petdotu175": "https://www.centralvet.cl/gatos-adultos/18445-20827-nutrience-original-gatos-adultos-indoorhairball.html#/1111111121-peso-5_kg",
@@ -162,7 +161,9 @@ sku = {
     "petdotu210": "https://www.centralvet.cl/suplementos-alimenticios/5943-aceite-omega-3-6-superpet-125-ml-para-gatos-sabor-cangrejo.html",
     "petdotu46": "https://www.centralvet.cl/perros-cachorros/5456-20686-royal-canin-perro-mini-puppy-3kg.html#/1111111128-peso-3_kg",
     "petdotu47": "https://www.centralvet.cl/alimentos/5451-21425-royal-canin-mini-adulto.html#/1111111116-peso-25_kg",
-    "petdotu184": "https://www.centralvet.cl/alimentos/17096-pro-plan-perro-adulto-optilife-small-breed-3-kg.html"
+    "petdotu184": "https://www.centralvet.cl/alimentos/17096-pro-plan-perro-adulto-optilife-small-breed-3-kg.html",
+    "petdotu204":"https://www.centralvet.cl/26477-nexgard-combo-antiparasitario-interno-y-externo-para-gatitos-entre-08-a-25-kg-boehringer-ingelheim.html",
+    "petdotu168":"https://www.centralvet.cl/26476-nexgard-combo-antiparasitario-interno-y-externo-para-gatos-de-25-75-kg-boehringer-ingelheim.html"
 }
 sku2={ "petdotu36": "https://www.centralvet.cl/inicio/22462-acana-classic-prairie-poultry-para-perros-9kg.html#/1111111133-peso-113_kg"}
 results = []

@@ -88,7 +88,8 @@ sku = {
     "petdotu96": "https://www.amigales.cl/collar-adaptil.html",
     "petdotu97": "https://www.amigales.cl/collar-adaptil.html",
     "petdotu98": "https://www.amigales.cl/virbac-allercalm-shampoo.html",
-    "petdotu100": "https://www.amigales.cl/phisio-anti-olor-auricular.html"
+    "petdotu100": "https://www.amigales.cl/phisio-anti-olor-auricular.html",
+    "petdotu13":"https://www.amigales.cl/fit-formula-perro-adulto-light-20kg.html"
 }
 sku2 = {"petdotu5": "https://www.amigales.cl/revolution-plus-antiparasitario-gatos.html"}
 

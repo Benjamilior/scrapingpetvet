@@ -150,7 +150,14 @@ skus = {
     "petdotu115": "6491",
     "petdotu80": "2506",
     "petdotu46": "2970",
-    "petdotu47": "1824"
+    "petdotu47": "1824",
+    "petdotu161":"4123",
+    "petdotu13":"5820",
+    "petdotu194":"5017",
+    "petdotu176":"7084",
+    "petdotu128":"2590",
+    "petdotu132":"5138"
+   
 }
 url = "https://www.superzoo.cl/on/demandware.store/Sites-SuperZoo-Site/es_CL/Product-Variation"
 headers = {

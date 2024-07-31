@@ -51,7 +51,7 @@ sku = {
     "petdotu9": "https://www.tusmascotas.cl/product/acana-bountiful-cath-cat-45-kg/",
     "petdotu14": "https://www.tusmascotas.cl/product/acana-duck-and-pear-2/",
     "petdotu11": "https://www.tusmascotas.cl/product/acana-heritage-freshwater-fish-trucha-arcoiris-bagre-azul-y-perca-dorada-113-kg/",
-    "petdotu13": "https://www.tusmascotas.cl/product/acana-heritage-light-fit-formula-11-35kg/",
+  
     "petdotu7": "https://www.tusmascotas.cl/product/acana-classic-wild-coast/",
     "petdotu10": "https://www.tusmascotas.cl/product/first-feast-cat-acana/",
     "petdotu160": "https://www.tusmascotas.cl/product/acana-heritage-free-run-poultry-pollo-pavo-y-huevo-59-kg/",
@@ -109,8 +109,7 @@ sku = {
 
     "petdotu58": "https://www.tusmascotas.cl/product/brit-puppy-salmon/",
     "petdotu53": "https://www.tusmascotas.cl/product/brit-medium-breed-lambrice/",
-    "petdotu168": "https://www.tusmascotas.cl/product/broadline-spot-on-para-gatos-25-75-kg/",
-    "petdotu204": "https://www.tusmascotas.cl/product/broadline-spot-on-para-gatos-06-25-kg/",
+    
     "petdotu81": "https://www.tusmascotas.cl/product/calmer-para-perros-gatos/",
 
     "petdotu77": "https://www.tusmascotas.cl/product/oxtrin-30-comprimidos/",
@@ -232,7 +231,9 @@ sku = {
     "petdotu50": "https://www.tusmascotas.cl/product/bil-jac-puppy-dog-food-13-6kg/",
     "petdotu33": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-gatos-12-kg-a-28-kg/",
     "petdotu31": "https://www.tusmascotas.cl/product/bravecto-gatos-250mg-28-625kg/",
-    "petdotu54": "https://www.tusmascotas.cl/product/brit-perro-puppy-cordero-y-arroz-12kg/"
+    "petdotu54": "https://www.tusmascotas.cl/product/brit-perro-puppy-cordero-y-arroz-12kg/",
+    "petdotu204":"https://www.tusmascotas.cl/product/nexgard-combo-cat-s-0-3ml-0-8-2-5kg-2/",
+    "petdotu168":"https://www.tusmascotas.cl/product/nexgard-combo-cat-l-0-9ml-2-5-7-5kg/"
 
 }
 sku2 = {"petdotu1": "https://www.tusmascotas.cl/product/apoquel-16mg-oclacitinib/"}

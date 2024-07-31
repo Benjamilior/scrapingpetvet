@@ -53,7 +53,6 @@ sku = {
     "petdotu9": "https://www.bigos.cl/alimentos-para-gatos/6845-acana-bountiful-catch-para-gatos.html",
     "petdotu14": "https://www.bigos.cl/alimentos-para-perros/acana-duck-and-pear-para-perros#/525-tamano-102_kg_saco",
     "petdotu11": "https://www.bigos.cl/alimentos-para-perros/4498-40-acana-freshwater-fish-para-perros.html#/506-tamano-113_kg_saco",
-    "petdotu13": "https://www.bigos.cl/alimentos-para-perros/4502-34-acana-light-and-fit-para-perros.html#/506-tamano-113_kg_saco",
     "petdotu7": "https://www.bigos.cl/alimentos-para-perros/acana-wild-coast-para-perros#/537-tamano-97_kg_saco",
     "petdotu10": "https://www.bigos.cl/alimentos-para-gatos/6843-398-acana-first-feast-kitten-para-gatitos.html#/501-tamano-18_kg_bolsa",
     "petdotu44": "https://www.bigos.cl/alimentos-para-gatos/royal-canin-kitten-para-gatitos#/521-tamano-15_kg_bolsa",

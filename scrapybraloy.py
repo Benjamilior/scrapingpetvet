@@ -140,7 +140,8 @@ sku= {
     "petdotu80": "https://braloy.cl/odour-buster/345-arena-odour-buster-original-14-kg.html",
     "petdotu46": "https://braloy.cl/royal-canin/723-royal-canin-mini-puppy-3-kg.html",
     "petdotu47": "https://braloy.cl/royal-canin/375-royal-canin-mini-adulto-25-kg.html",
-    "petdotu184": "https://braloy.cl/inicio/8222-pro-plan-adulto-razas-pequenas-3-kg.html"
+    "petdotu184": "https://braloy.cl/inicio/8222-pro-plan-adulto-razas-pequenas-3-kg.html",
+    "petdotu13":"https://braloy.cl/fit-formula/1661-fit-formula-light-20-kg.html"
 }
 
 results = []

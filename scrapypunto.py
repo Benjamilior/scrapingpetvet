@@ -227,7 +227,6 @@ sku = {
     "petdotu165": "https://puntomascotas.cl/nutrience/30728-nutrience-gato-adulto-original-272-kg-015561524629.html",
     "petdotu166": "https://puntomascotas.cl/hpm/41196-hpm-virbac-gato-allergy-hypoallergy-3kg-3561963601996.html",
     "petdotu167": "https://puntomascotas.cl/farmacia-veterinaria/30531-clindabone-clindamicina-165mg-7800006006364.html",
-    "petdotu204": "https://puntomascotas.cl/farmacia-veterinaria/38367-broadline-antiparasitario-interno-y-externo-para-gatos-06-a-25-kg-7809599502154.html",
     "petdotu173": "https://puntomascotas.cl/cats/33511-pro-plan-cat-urinary-care-protection-15-kg--7613039947739.html",
     "petdotu174": "https://puntomascotas.cl/suplementos/36573-nutribound-perro-150-ml-7502010426861.html",
     "petdotu175": "https://puntomascotas.cl/nutrience/36528-nutrience-gato-adulto-original-272-kg-015561524728.html",
@@ -252,7 +251,9 @@ sku = {
     "petdotu210": "https://puntomascotas.cl/farmacia-veterinaria/30499-omega-superpet-gato-125ml-7800006004926.html",
     "petdotu80": "https://puntomascotas.cl/arenas-y-banos-sanitarios/36402-arena-odour-buster-original-14-kg-895792000273.html",
     "petdotu47": "https://puntomascotas.cl/perros-adulto/35340-royal-canin-mini-adulto-3kg-7896181297857.html",
-    "petdotu184": "https://puntomascotas.cl/dogs/30024-pro-plan-aduto-small-breed-3-kg--7613287029195.html"
+    "petdotu184": "https://puntomascotas.cl/dogs/30024-pro-plan-aduto-small-breed-3-kg--7613287029195.html",
+    "petdotu204":"https://puntomascotas.cl/farmacia-veterinaria/41295-nexgard-combo-antiparasitario-interno-y-externo-para-gatos-08-25-kg-4064951005718.html",    
+    "petdotu168":"https://puntomascotas.cl/farmacia-veterinaria/41296-nexgard-combo-antiparasitario-interno-y-externo-para-gatos-25-75-kg-4064951007040.html"
 }
 sku2 = {"petdotu1": "https://puntomascotas.cl/cicatrizantes/37170-apoquel-16-mg-x-20-comprimidos-5414736044217.html"}
 results = []
