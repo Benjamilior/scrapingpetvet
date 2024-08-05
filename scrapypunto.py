@@ -263,7 +263,7 @@ results = []
 
 for sku_key, url in sku.items():
     driver.get(url)
-    precio_oferta = "No disponible"
+    precio_oferta = "No disponible"    
     precio_normal = "No disponible"
     stock= "Con Stock"
     try:
@@ -331,13 +331,20 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 
 
 #Valores que se pasan a Sheets
-values = [[item['SKU'], item['Precio'],item['Precio_oferta'],item['Stock']] for item in results]
+values = [[item['SKU'], item['Precio'],item['Precio_oferta']] for item in results]
 result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 							range='puntomascotas!A2:C',#CAMBIAR
 							valueInputOption='USER_ENTERED',
 							body={'values':values}).execute()
 print(f"Datos insertados correctamente")        
 
+#Valores que se pasan a Sheets
+values = [[item['Stock']] for item in results]
+result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+							range='puntomascotas!M2:N',#CAMBIAR
+							valueInputOption='USER_ENTERED',
+							body={'values':values}).execute()
+print(f"Datos insertados correctamente")        
 
 
 competitor = "Punto Mascotas"  # Cambiar 
@@ -368,3 +375,19 @@ result = sheet.values().update(
 ).execute()
 
 print(f"Datos insertados correctamente en la nueva hoja de Google Sheets en el rango {update_range}")
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='Stock!A:A').execute()  # Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+# Convertir resultados a la lista de valores
+values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+print(values)
+update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()

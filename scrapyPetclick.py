@@ -263,6 +263,15 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 							body={'values':values}).execute()
 print(f"Datos insertados correctamente")
 
+
+#Valores que se pasan a Sheets a Stock
+values = [[item['Stock']] for item in results]
+result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+							range='petclick!M2:N',#CAMBIAR
+							valueInputOption='USER_ENTERED',
+							body={'values':values}).execute()
+print(f"Datos insertados correctamente")
+
 df = pd.DataFrame(results)
 print(df)
 print(df.head)
@@ -296,3 +305,21 @@ result = sheet.values().update(
 ).execute()
 
 print(f"Datos insertados correctamente en la nueva hoja de Google Sheets en el rango {update_range}")
+
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='Stock!A:A').execute()  # Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+print(values)
+update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()

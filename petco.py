@@ -193,6 +193,7 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 							body={'values':values}).execute()
 print(f"Datos insertados correctamente")
 
+
 df = pd.DataFrame(results)
 print(df)
 print(df.head)
