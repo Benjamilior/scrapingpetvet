@@ -243,10 +243,13 @@ for sku_key, url in sku.items():
     driver.get(url)
     precio_oferta = "No disponible"
     precio_normal = "No disponible"
+    stock= "Con Stock"
     try:
         # Intenta obtener el precio de oferta
         precio_oferta_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/ins/span') #Cambiar
         precio_oferta = precio_oferta_element.text  # Guarda el precio de oferta
+        stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
+        stock = stock_element.text
     except NoSuchElementException:
         pass  # Si no se encuentra el precio de oferta, se continuará con el siguiente bloque de código
 
@@ -254,6 +257,8 @@ for sku_key, url in sku.items():
         # Intenta obtener el precio normal
         precio_normal_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/del/span[2]') #Cambiar
         precio_normal = precio_normal_element.text  # Guarda el precio normal
+        stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
+        stock = stock_element.text
     except NoSuchElementException:
         pass  # Si no se encuentra el precio normal, se continuará con el siguiente bloque de código
 
@@ -262,13 +267,16 @@ for sku_key, url in sku.items():
             # Si no se puede encontrar ni el precio de oferta ni el precio normal, intenta con el tercer XPath
             precio_normal_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/span[2]') #Cambiar
             precio_normal = precio_normal_element.text  # Guarda el precio normal
+            stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
+            stock = stock_element.text
         except NoSuchElementException as e:
             print(f"No se pudo encontrar el precio en la URL {url} - {e}")
 
     data = {
         "SKU": sku_key,
         "Precio": precio_normal,
-        "Precio_oferta": precio_oferta
+        "Precio_oferta": precio_oferta,
+        "Stock" :stock
     }
     results.append(data)
     print(data)
@@ -301,9 +309,9 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 
 
 #Valores que se pasan a Sheets
-values = [[item['SKU'], item['Precio'],item['Precio_oferta']] for item in results]
+values = [[item['SKU'], item['Precio'],item['Precio_oferta'],item['Stock']] for item in results]
 result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
-							range='tusmascotas!A2:C',#CAMBIAR
+							range='tusmascotas!A2:E',#CAMBIAR
 							valueInputOption='USER_ENTERED',
 							body={'values':values}).execute()
 print(f"Datos insertados correctamente")

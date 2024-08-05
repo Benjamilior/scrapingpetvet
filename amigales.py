@@ -748,6 +748,7 @@ for sku_key, info in sku2.items():
     driver.get(info["url"])
     precio_oferta = "No disponible"
     precio_normal = "No disponible"
+    stock= "Con Stock"
     time.sleep(1)
     
     try:
@@ -761,6 +762,8 @@ for sku_key, info in sku2.items():
         try:
             precio_oferta_element = driver.find_element(By.CLASS_NAME, "product-info-price2")  # Cambiar según sea necesario
             precio_oferta = precio_oferta_element.text
+            stock_element= driver.find_element(By.XPATH,"/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[3]")
+            stock= stock_element.text
         except NoSuchElementException:
             pass
         
@@ -768,6 +771,8 @@ for sku_key, info in sku2.items():
         try:
             precio_normal_element = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[1]')  # Cambiar según sea necesario
             precio_normal = precio_normal_element.text
+            stock_element= driver.find_element(By.XPATH,"/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[3]")
+            stock= stock_element.text
         except NoSuchElementException:
             pass
         
@@ -776,6 +781,8 @@ for sku_key, info in sku2.items():
                 # Intentar con otro XPath si no se encuentran los precios anteriores
                 precio_normal_element = driver.find_element(By.XPATH, '/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[1]/span[2]')  # Cambiar según sea necesario
                 precio_normal = precio_normal_element.text
+                stock_element= driver.find_element(By.XPATH,"/html/body/div[2]/main/div[3]/div/div[1]/div[4]/div[3]")
+                stock= stock_element.text
             except NoSuchElementException as e:
                 print(f"No se pudo encontrar el precio en la URL {info['url']} - {e}")
         
@@ -785,7 +792,8 @@ for sku_key, info in sku2.items():
     data = {
         "SKU": sku_key,
         "Precio": precio_normal,
-        "Precio_oferta": precio_oferta
+        "Precio_oferta": precio_oferta,
+        "Stock":stock
     }
     results.append(data)
     print(data)
@@ -815,9 +823,9 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 
 
 #Valores que se pasan a Sheets
-values = [[item['SKU'], item['Precio'], item['Precio_oferta']] for item in results]
+values = [[item['SKU'], item['Precio'], item['Precio_oferta'],item['Stock']] for item in results]
 result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
-							range='amigales!A2:C',#CAMBIAR
+							range='amigales!A2:D',#CAMBIAR
 							valueInputOption='USER_ENTERED',
 							body={'values':values}).execute()
 print(f"Datos insertados correctamente")

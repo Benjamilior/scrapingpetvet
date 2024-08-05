@@ -23,6 +23,7 @@ creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES
 service = build('sheets', 'v4', credentials=creds)
 sheet = service.spreadsheets()
 
+
 #Ejecutador del Codigo
 
 start_time = time.time()  # Tiempo de inicio de la ejecución
@@ -251,12 +252,14 @@ def fetch_data(product_id, product_url):
                 if variant["id"] == product_id:
                     price = variant["price"]
                     compare_at_price = variant.get("compare_at_price", "N/A")
+                    available = variant.get("available", "Unknown")  # Extrae la disponibilidad
                     price_data.append({
                         "SKU": product_id,
                         "Price": price,
-                        "Compare_at_Price": compare_at_price if compare_at_price is not None else ""
+                        "Compare_at_Price": compare_at_price if compare_at_price is not None else "",
+                        "Available": available
                     })
-                    print(product_id,price,compare_at_price)
+                    print(product_id, price, compare_at_price, available)
                     return
     else:
         print(f"Failed to retrieve data for ID {product_id}. Status code: {response.status_code}")
@@ -276,15 +279,6 @@ now_str = now.strftime('%Y-%m-%d %H:%M:%S')
 data = {"": now_str}
 json_data = json.dumps(data)
 
-# Google Sheets API setup
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-KEY = 'key.json'
-SPREADSHEET_ID = '1PrHE2FBeBhQnVYeCLQclLqj_tiIOq7z3JuMAG-2aAXg'  # ID de la hoja de cálculo
-
-creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
-service = build('sheets', 'v4', credentials=creds)
-sheet = service.spreadsheets()
-
 # Actualizar fecha de extracción en Google Sheets
 values = [[json_data]]
 result = sheet.values().update(
@@ -298,7 +292,16 @@ result = sheet.values().update(
 values = [[item['SKU'], item['Price'],item['Compare_at_Price']] for item in price_data]
 result = sheet.values().update(
     spreadsheetId=SPREADSHEET_ID,
-    range='petvet!A2:C1000',  # CAMBIAR
+    range='petvet!A2:D1000',  # CAMBIAR
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+print(f"Datos insertados correctamente")
+
+values = [[item['Available']] for item in price_data]
+result = sheet.values().update(
+    spreadsheetId=SPREADSHEET_ID,
+    range='petvet!H2:I1000',  # CAMBIAR
     valueInputOption='USER_ENTERED',
     body={'values': values}
 ).execute()

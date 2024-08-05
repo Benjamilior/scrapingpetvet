@@ -8,10 +8,11 @@ from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2.credentials import Credentials
 from googleapiclient.discovery import build
 from google.oauth2 import service_account
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
 import pandas as pd
 import json
 import datetime
-
 #Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 KEY = 'key.json'
@@ -256,68 +257,52 @@ sku = {
     "petdotu168":"https://puntomascotas.cl/farmacia-veterinaria/41296-nexgard-combo-antiparasitario-interno-y-externo-para-gatos-25-75-kg-4064951007040.html"
 }
 sku2 = {"petdotu1": "https://puntomascotas.cl/cicatrizantes/37170-apoquel-16-mg-x-20-comprimidos-5414736044217.html"}
+
+
 results = []
 
-#Tipo 1
 for sku_key, url in sku.items():
     driver.get(url)
+    precio_oferta = "No disponible"
+    precio_normal = "No disponible"
+    stock= "Con Stock"
     try:
-        nombresku = driver.find_element("xpath", '/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/h1') #CAMBIAR
-        precio = driver.find_element("xpath", '/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/div[1]/div/div[5]/div/form/div[2]/div[1]/span[1]/span[1]')#CAMBIAR
+        # Intenta obtener el precio de oferta
+        precio_oferta_element = driver.find_element("xpath", '/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/div[1]/div/div[5]/div/form/div[2]/div[1]/span[1]/span[1]') #Cambiar
+        precio_oferta = precio_oferta_element.text  # Guarda el precio de oferta
+        stock_element= driver.find_element(By.XPATH,"/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/div[1]/div/div[2]")
+        stock=stock_element.text
+    except NoSuchElementException:
+        pass  # Si no se encuentra el precio de oferta, se continuará con el siguiente bloque de código
 
-        data = {
-            "SKU":sku_key,
-            "Nombre SKU": nombresku.text,
-            "Precio": precio.text,
-              # Si deseas almacenar la URL junto con los datos
-        }
-        results.append(data)
-    except Exception as e:
-        print(f"Error en la URL {url} - {e}")
-#Tipo 2
-# for i in direccionestipo2:
-#     for a in tipo2:
-#         driver.get(a)  # Cambia la URL para cada botón
+    try:
+        # Intenta obtener el precio normal
+        precio_oferta_element = driver.find_element("xpath", '/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/div[1]/div/div[5]/div/form/div[2]/div[1]/span[1]/span[1]') #Cambiar
+        precio_oferta = precio_oferta_element.text  # Guarda el precio de oferta
+        stock_element= driver.find_element(By.XPATH,"/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/div[1]/div/div[2]")
+        stock=stock_element.text
+    except NoSuchElementException:
+        pass  # Si no se encuentra el precio normal, se continuará con el siguiente bloque de código
 
-#         # Apretar el botón correspondiente
-#         boton = driver.find_element(By.XPATH, i)  # Puedes usar "url" para ubicar el botón si es único en cada página
-#         boton.click()
-#         time.sleep(1)
+    if precio_oferta == "No disponible" and precio_normal == "No disponible":
+        try:
+            precio_oferta_element = driver.find_element("xpath", '/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/div[1]/div/div[5]/div/form/div[2]/div[1]/span[1]/span[1]') #Cambiar
+            precio_oferta = precio_oferta_element.text  # Guarda el precio de oferta
+            stock_element= driver.find_element(By.XPATH,"/html/body/main/section/div/div/div/div/div/section/div[1]/div[1]/div[2]/section/div[1]/div/div[2]")
+            stock=stock_element.text
+        except NoSuchElementException as e:
+            print(f"No se pudo encontrar el precio en la URL {url} - {e}")
 
-#         # Seleccionar todos los Xpath Extradiables
-#         nombresku = driver.find_element(By.XPATH, '/html/body/main/section/div[2]/div/section/div[2]/div[1]/div[2]/div[1]/h1/span')
-#         price = driver.find_element_by_class_name('product-price')
-#         tipoalimento = driver.find_element(By.XPATH, i)
-
-#         resultado_dict = {
-#             'nombre': nombresku.text,
-#             'tipo_alimento': tipoalimento.text,
-#             'precio': price.text
-#         }
-#         results.append(resultado_dict)
-
-#Tipo 3
-# for i in direccionestipo3:
-#     for a in tipo3:
-#         driver.get(a)  # Cambia la URL para cada botón
-
-#         # Apretar el botón correspondiente
-#         boton = driver.find_element(By.XPATH, i)  # Puedes usar "url" para ubicar el botón si es único en cada página
-#         boton.click()
-#         time.sleep(1)
-
-#         # Seleccionar todos los Xpath Extradiables
-#         nombresku = driver.find_element(By.XPATH, '/html/body/main/section/div[2]/div/section/div[2]/div[1]/div[2]/div[1]/h1/span')
-#         price = driver.find_element_by_class_name('product-price')
-#         tipoalimento = driver.find_element(By.XPATH, i)
-
-#         resultado_dict = {
-#             'nombre': nombresku.text,
-#             'tipo_alimento': tipoalimento.text,
-#             'precio': price.text
-#         }
-#         results.append(resultado_dict)
-
+    data = {
+        "SKU": sku_key,
+        "Precio": precio_normal,
+        "Precio_oferta": precio_oferta,
+        "Stock" :stock
+    }
+    results.append(data)
+    print(data)
+    time.sleep(0.5)
+driver.quit()
 
 df = pd.DataFrame(results)
 print(df)
@@ -346,7 +331,7 @@ result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 
 
 #Valores que se pasan a Sheets
-values = [[item['SKU'], item['Nombre SKU'], item['Precio']] for item in results]
+values = [[item['SKU'], item['Precio'],item['Precio_oferta'],item['Stock']] for item in results]
 result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
 							range='puntomascotas!A2:C',#CAMBIAR
 							valueInputOption='USER_ENTERED',

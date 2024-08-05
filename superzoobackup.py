@@ -155,7 +155,7 @@ skus = {
     "petdotu13":"5820",
     "petdotu194":"5017",
     "petdotu176":"7084",
-    "petdotu128":"2590",
+    "petdotu128":"2592",
     "petdotu132":"5138"
    
 }
