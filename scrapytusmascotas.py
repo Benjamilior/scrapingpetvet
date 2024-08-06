@@ -64,7 +64,6 @@ sku = {
     "petdotu135": "https://www.tusmascotas.cl/product/pipeta-advantage-para-gatos-4-kg-a-8-kg/",
     "petdotu177": "https://www.tusmascotas.cl/product/advocate-perro-10-25kg/",
     "petdotu196": "https://www.tusmascotas.cl/product/advocate-perro-25-40kg/",
-    "petdotu199": "https://www.tusmascotas.cl/product/advocate-perro-10-25kg/",
     "petdotu149": "https://www.tusmascotas.cl/product/advocate-felino-hasta-4kg/",
     "petdotu115": "https://www.tusmascotas.cl/product/advocate-felino-4-a-8/",
     "petdotu84": "https://www.tusmascotas.cl/product/america-litter-ultra-scooping-odor-seal-15-kg/",
@@ -155,8 +154,8 @@ sku = {
     "petdotu189": "https://www.tusmascotas.cl/product/nexgard-spectra-36-75kg-1-comprimido/",
     "petdotu68": "https://www.tusmascotas.cl/product/nexgard-spectra-76-15kg-1-comprimido/",
     "petdotu67": "https://www.tusmascotas.cl/product/nexgard-spectra-76-15kg-3-comprimidos/",
-    "petdotu70": "https://www.tusmascotas.cl/product/nexgard-spectra-151-30kg-3-comprimidos/",
-    "petdotu69": "https://www.tusmascotas.cl/product/nexgard-spectra-151-30kg-1-comprimido/",
+    "petdotu70": "https://www.tusmascotas.cl/product/nexgard-spectra-151-30kg-1-comprimidos/",
+    "petdotu69": "https://www.tusmascotas.cl/product/nexgard-spectra-151-30kg-3-comprimido/",
     "petdotu138": "https://www.tusmascotas.cl/product/nexgard-spectra-301-60kg-3-comprimidos/",
     "petdotu147": "https://www.tusmascotas.cl/product/nexgard-spectra-301-60kg-1-comprimido/",
 

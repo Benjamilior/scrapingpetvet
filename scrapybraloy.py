@@ -86,7 +86,7 @@ sku= {
     "petdotu18": "https://braloy.cl/fit-formula/645-fit-formula-cachorros-10-kg.html",
     "petdotu15": "https://braloy.cl/fit-formula/386-fit-formula-gato-10-kg.html",
     "petdotu93": "https://braloy.cl/adaptil/1459-adaptil-difusor-repuesto-48-ml.html",
-    "petdotu42": "https://braloy.cl/feliway/1468-feliway-friends-difusor-repuesto-48-ml.html",
+    "petdotu42": "https://braloy.cl/feliway/1464-feliway-classic-difusor-repuesto-48-ml.html",
     "petdotu43": "https://braloy.cl/feliway/1468-feliway-friends-difusor-repuesto-48-ml.html",
     "petdotu40": "https://braloy.cl/feliway/1463-feliway-classic-spray-60-ml.html",
     "petdotu39": "https://braloy.cl/feliway/1465-feliway-classic-repuesto-48-ml.html",
