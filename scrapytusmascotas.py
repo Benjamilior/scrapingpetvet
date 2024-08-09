@@ -75,11 +75,8 @@ sku = {
     "petdotu82": "https://www.tusmascotas.cl/product/artri-tabs-60-comprimidos/",
     "petdotu66": "https://www.tusmascotas.cl/product/laveta-taurina-50ml/",
     "petdotu65": "https://www.tusmascotas.cl/product/laveta-carnitine-50ml/",
-  
-
     "petdotu49": "https://www.tusmascotas.cl/product/bil-jac-small-breed-adult-2-7kg/",
     "petdotu132": "https://www.tusmascotas.cl/product/belcando-finest-gf-senior-12-5kg/",
-
     "petdotu32": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-2-kg-a-45-kg/",
     "petdotu30": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-45-kg-a-10-kg/",
     "petdotu29": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-10-kg-a-20-kg/",
@@ -90,11 +87,9 @@ sku = {
     "petdotu52": "https://www.tusmascotas.cl/product/brit-adult-small-breed/",
     "petdotu55": "https://www.tusmascotas.cl/product/brit-care-cat-grain-free-sterilized-urinary-sabor-a-chicken-7kg-c-100903909/",
     "petdotu106": "https://www.tusmascotas.cl/product/brit-perro-puppy-cordero-y-arroz-12kg/",
-  
     "petdotu116": "https://www.tusmascotas.cl/product/brit-adulto-salmon-3/",
     "petdotu123": "https://www.tusmascotas.cl/product/brit-perro-junior-salmon-y-papa-12-kg/",
     "petdotu113": "https://www.tusmascotas.cl/product/brit-junior-cordero-y-arroz/",
-
     "petdotu130": "https://www.tusmascotas.cl/product/brit-care-cat-grain-free-haircare-sabor-salmonchicken-7kg-c-100905/",
     "petdotu133": "https://www.tusmascotas.cl/product/brit-adulto-salmon/",
     "petdotu134": "https://www.tusmascotas.cl/product/brit-care-cat-senior-2/",
@@ -102,40 +97,29 @@ sku = {
     "petdotu139": "https://www.tusmascotas.cl/product/brit-sensitive-venison-potato-ciervo-12kg/",
     "petdotu140": "https://www.tusmascotas.cl/product/brit-perro-weight-loss-conejo-y-arroz-3-kg/",
     "petdotu155": "https://www.tusmascotas.cl/product/brit-care-cat-sterilized-urinary-sabor-a-chicken-2kg/",
-
     "petdotu57": "https://www.tusmascotas.cl/product/brit-adulto-salmon-3/",
     "petdotu56": "https://www.tusmascotas.cl/product/brit-perro-weight-loss-conejo-y-arroz-12-kg/",
-
     "petdotu58": "https://www.tusmascotas.cl/product/brit-puppy-salmon/",
     "petdotu53": "https://www.tusmascotas.cl/product/brit-medium-breed-lambrice/",
-    
     "petdotu81": "https://www.tusmascotas.cl/product/calmer-para-perros-gatos/",
-
     "petdotu77": "https://www.tusmascotas.cl/product/oxtrin-30-comprimidos/",
     "petdotu89": "https://www.tusmascotas.cl/product/sucravet-sucralfato-100ml/",
     "petdotu71": "https://www.tusmascotas.cl/product/flora-fix-pet-15g/",
     "petdotu167": "https://www.tusmascotas.cl/product/clindabone-clindamicina-165mg-20-comp/#:~:text=Clindabone%20Clindamicina%20165mg%2020%20comp%20es%20indicada%20para%20el%20tratamiento,perfringens%20y%20muchas%20especies%20de",
-
     "petdotu91": "https://www.tusmascotas.cl/product/dermisolona-suspension-oral-30ml/",
     "petdotu95": "https://www.tusmascotas.cl/product/dermisolona-10-comp-20-mg/",
-
     "petdotu193": "https://www.tusmascotas.cl/product/multivitaminico-doguivit-senior-30-comp/",
     "petdotu60": "https://www.tusmascotas.cl/product/mixantip-plus-50gr/",
-
     "petdotu185": "https://www.tusmascotas.cl/product/drontal-antiparasitario-interno-para-perros-de-35-kg/",
     "petdotu143": "https://www.tusmascotas.cl/product/drontal-antiparasitario-interno-para-perros-de-hasta-10-kg/",
     "petdotu188": "https://www.tusmascotas.cl/product/drontal-antiparasitario-interno-para-gatos-2-comprimidos/",
-
     "petdotu42": "https://www.tusmascotas.cl/product/feliway-difusor-mas-repuesto/",
     "petdotu43": "https://www.tusmascotas.cl/product/feliway-friends-difusor-mas-repuesto/",
     "petdotu40": "https://www.tusmascotas.cl/product/feliway-spray/",
     "petdotu39": "https://www.tusmascotas.cl/product/feliway-repuesto/",
     "petdotu41": "https://www.tusmascotas.cl/product/feliway-friends-repuesto/",
-
-
     "petdotu94": "https://www.tusmascotas.cl/product/ohm-pastillas-calmantes/",
     "petdotu87": "https://www.tusmascotas.cl/product/itraskin-suspension-oral-120-ml-receta-requerida/",
-
     "petdotu109": "https://www.tusmascotas.cl/product/josera-festival-adult-125kg/",
     "petdotu120": "https://www.tusmascotas.cl/product/josera-ente-kartoffel-adult-senior-125kg/",
     "petdotu117": "https://www.tusmascotas.cl/product/josidog-regular-josera-adult-18kg/",
@@ -158,7 +142,6 @@ sku = {
     "petdotu69": "https://www.tusmascotas.cl/product/nexgard-spectra-151-30kg-3-comprimido/",
     "petdotu138": "https://www.tusmascotas.cl/product/nexgard-spectra-301-60kg-3-comprimidos/",
     "petdotu147": "https://www.tusmascotas.cl/product/nexgard-spectra-301-60kg-1-comprimido/",
-
     "petdotu165": "https://www.tusmascotas.cl/product/nutrience-original-cat-adulto-5kg/",
     "petdotu175": "https://www.tusmascotas.cl/product/nutrience-original-cat-indoor-5kg/",
     "petdotu157": "https://www.tusmascotas.cl/product/oftavet-solucion-oftalmica-5ml/",
@@ -168,17 +151,13 @@ sku = {
     "petdotu206": "https://www.tusmascotas.cl/product/papainpet-suplemento-30-comprimidos/",
     "petdotu195": "https://www.tusmascotas.cl/product/paz-pet-60ml/",
     "petdotu202": "https://www.tusmascotas.cl/product/shampoo-antiseptico-150ml-petever-forte/",
-
     "petdotu173": "https://www.tusmascotas.cl/product/proplan-urinary-cat-7-5kg/",
-
     "petdotu192": "https://www.tusmascotas.cl/product/pro-plan-sterilized-cat-75-kg/",
     "petdotu184": "https://www.tusmascotas.cl/product/pro-plan-perro-adulto-razas-pequenas-3-kg/",
     "petdotu179": "https://www.tusmascotas.cl/product/regepipel-plus-150ml/",
     "petdotu5": "https://www.tusmascotas.cl/product/revolution-plus-0-25ml/",
     "petdotu4": "https://www.tusmascotas.cl/product/revolution-plus-0-50ml/",
-
     "petdotu27": "https://www.tusmascotas.cl/product/rimadyl-carprofeno-100mg/",
-
     "petdotu207": "https://www.tusmascotas.cl/product/silimadrag-suspencion-120-ml/",
     "petdotu203": "https://www.tusmascotas.cl/product/simparica-trio-2-5-a-5-kg-1-comprimido/",
     "petdotu169": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-5-kg-a-10-kg/",
@@ -191,9 +170,7 @@ sku = {
     "petdotu20": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-20-kg-a-40-kg/",
     "petdotu210": "https://www.tusmascotas.cl/product/superpet-omega-36-gato-125ml/",
     "petdotu79": "https://www.tusmascotas.cl/product/synulox-antibiotico-10-comprimidos-receta-requerida/",
- 
     "petdotu108": "https://www.tusmascotas.cl/product/heel-traumeel-perros-y-gatos-100-tab/",
- 
     "petdotu92": "https://www.tusmascotas.cl/product/ursovet-suspension-oral-60ml/",
     "petdotu186": "https://www.tusmascotas.cl/product/glicopan-pet-125-ml/",
     "petdotu208": "https://www.tusmascotas.cl/product/hemolitan-pet-60ml/",
@@ -207,17 +184,13 @@ sku = {
     "petdotu73": "https://www.tusmascotas.cl/product/silimarina-vitanimal-30-comprimidos/",
     "petdotu74": "https://www.tusmascotas.cl/product/silimarina-90-comprimidos/",
     "petdotu158": "https://www.tusmascotas.cl/product/hemolivet-30-capsulas/",
-
     "petdotu88": "https://www.tusmascotas.cl/product/hills-small-paws-adulto/",
-   
     "petdotu90": "https://www.tusmascotas.cl/product/pacifor-gotas-10ml/",
     "petdotu61": "https://www.tusmascotas.cl/product/mixantip-plus-15-g/",
     "petdotu80": "https://www.tusmascotas.cl/product/odour-buster-original-14kg-arena-santiaria-para-gatos/",
     "petdotu63": "https://www.tusmascotas.cl/product/oven-baked-tradition/",
     "petdotu62": "https://www.tusmascotas.cl/product/oven-baked-tradition-adult-2/",
-
     "petdotu86": "https://www.tusmascotas.cl/product/wanpy-lamb-jerky/",
-    
     "petdotu44": "https://www.tusmascotas.cl/product/mother-and-babycat-3/",
     "petdotu45": "https://www.tusmascotas.cl/product/royal-canin-anallergenic-perro/",
     "petdotu46": "https://www.tusmascotas.cl/product/royal-canin-mini-puppy-3-kg/",

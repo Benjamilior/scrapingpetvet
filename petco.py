@@ -88,7 +88,7 @@ sku = {
     "petdotu114": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Perros-Talla-Peque%C3%B1a/Orijen-Alimento-Natural-Seco-para-Perro-Small-Breed%2C-4-5-kg/p/601236",
     "petdotu131": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-para-Cachorro/Orijen-Alimento-Natural-Seco-para-Perro-Cachorro%2C-11-35-kg/p/601204",
     "petdotu192": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Pro-Plan-Alimento-Seco-para-Gato-Esterilizado-de-Todas-las-Razas%2C-1-kg/p/600047",
-    "petdotu187": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Pro-Plan-Urinary-Alimento-Seco-para-Gato-Adulto-de-Todas-las-Razas%2C-1-kg/p/600049",
+    
     "petdotu173": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Pro-Plan-Urinary-Alimento-Seco-para-Gato-Adulto-de-Todas-las-Razas%2C-1-kg/p/600049",
     "petdotu180": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Perros-Talla-Grande/Pro-Plan-Alimento-Seco-para-Cachorro-de-Razas-Medianas%2C-1-kg/p/600001",
     "petdotu8": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-para-Cachorro/Acana-Alimento-Natural-Seco-para-Perro-Cachorro-%26-Junior%2C-11-35-kg/p/601194",

@@ -1,32 +1,270 @@
-import requests
 
-url = "https://petcity.cl/wp-admin/admin-ajax.php"
+#No olvidarse del key.json
+#Buscar todos los "Cambiar" antes de usar
+#En chatgpt cruzar sku_dotu con links. Pedir que te haga el json desde el info del sheets
+#No olvidarse del key.json
+import json
+import time
+import datetime
+from selenium import webdriver
+from selenium.webdriver.chrome.options import Options
+from selenium.webdriver.common.by import By
+import pandas as pd
 
-# Cambia '45844' por el ID del nuevo producto que deseas agregar al carrito
-exmaples = "45844", "50956"
+import gspread
+from oauth2client.service_account import ServiceAccountCredentials
+from google.oauth2.credentials import Credentials
+from googleapiclient.discovery import build
+from google.oauth2 import service_account
 
-new_product_id = "50956"
-payload = f"quantity=1&action=woodmart_ajax_add_to_cart&add-to-cart={new_product_id}"
-headers = {
-    "cookie": "woocommerce_items_in_cart=1; woocommerce_cart_hash=7a0e661746ab45f559692fbc13bb8744; wp_woocommerce_session_6f561ba7624d011ed2c30531bbb7fa44=t_af1b23ce69be146fecec3605cb8986%257C%257C1722623577%257C%257C1722619977%257C%257Cf178b156933e4b457268f302cefe6920",
-    "User-Agent": "Mozilla/5.0 (Macintosh; Intel Mac OS X 10.15; rv:128.0) Gecko/20100101 Firefox/128.0",
-    "Accept": "*/*",
-    "Accept-Language": "en-US,es-CL;q=0.7,en;q=0.3",
-    "Accept-Encoding": "gzip, deflate, br, zstd",
-    "Content-Type": "application/x-www-form-urlencoded; charset=UTF-8",
-    "X-Requested-With": "XMLHttpRequest",
-    "Origin": "https://petcity.cl",
-    "Alt-Used": "petcity.cl",
-    "Connection": "keep-alive",
-    "Referer": "https://petcity.cl/tienda/bravecto-20-40kg/",
-    "Cookie": "sib_cuid=2a461287-7b63-4c44-ad8d-634990a27725; _ga_PNJ5G476YR=GS1.1.1722450662.4.1.1722450708.0.0.0; _ga=GA1.1.564679806.1721675085; _gcl_au=1.1.93791507.1721675085; po_visitor=yQ7b8QSpZXa9; _fbp=fb.1.1721675086377.17395658860478704; PHPSESSID=2dec7f72a7afb44e425e0f8aa3b514e5; sbjs_migrations=1418474375998%3D1; sbjs_current_add=fd%3D2024-07-31%2016%3A18%3A25%7C%7C%7Cep%3Dhttps%3A%2F%2Fpetcity.cl%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_first_add=fd%3D2024-07-31%2015%3A08%3A01%7C%7C%7Cep%3Dhttps%3A%2F%2Fpetcity.cl%2F%7C%7C%7Crf%3Dhttps%3A%2F%2Fwww.google.com%2F; sbjs_current=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_first=typ%3Dorganic%7C%7C%7Csrc%3Dgoogle%7C%7C%7Cmdm%3Dorganic%7C%7C%7Ccmp%3D%28none%29%7C%7C%7Ccnt%3D%28none%29%7C%7C%7Ctrm%3D%28none%29%7C%7C%7Cid%3D%28none%29%7C%7C%7Cplt%3D%28none%29%7C%7C%7Cfmt%3D%28none%29%7C%7C%7Ctct%3D%28none%29; sbjs_udata=vst%3D3%7C%7C%7Cuip%3D%28none%29%7C%7C%7Cuag%3DMozilla%2F5.0%20%28Macintosh%3B%20Intel%20Mac%20OS%20X%2010.15%3B%20rv%3A128.0%29%20Gecko%2F20100101%20Firefox%2F128.0; woodmart_recently_viewed_products=45844|43824|12345|12352|43949|30024|12925|38383|30007|30011|42416|12383|30004|12601|29937|12179|12200|12197|12206|12203|12151|12209|38686|30479|30815|30840|30824|30832|38374|31697|38444|29721|31977|45993|29720|31974|29724|29722|29725|32502|12047|12327|30291|32495|47662|30281|11414|11411|12395|12405|12350; sbjs_session=pgs%3D5%7C%7C%7Ccpg%3Dhttps%3A%2F%2Fpetcity.cl%2Ftienda%2Fbravecto-20-40kg%2F",
-    "Sec-Fetch-Dest": "empty",
-    "Sec-Fetch-Mode": "cors",
-    "Sec-Fetch-Site": "same-origin",
-    "Priority": "u=0",
-    "TE": "trailers"
+from selenium.common.exceptions import NoSuchElementException
+from selenium.common.exceptions import StaleElementReferenceException
+
+#Google Sheets
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+KEY = 'key.json'
+SPREADSHEET_ID = '1d_pPMYKjdHfxyP8qfblwDhrqlkyr_kK-rr2ps7kkmuQ' #Cambiar
+creds = None
+creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
+service = build('sheets', 'v4', credentials=creds)
+sheet = service.spreadsheets()
+
+
+# PATH = "C:\\Program Files (x86)\\chromedriver.exe"
+PATH = "/usr/local/bin/chromedriver"
+# Configurar las opciones de Chrome
+chrome_options = Options()
+chrome_options.add_argument("--headless")  # Ver el Navegador
+chrome_options.add_argument("--window-size=1920x1080")
+start_time = time.time()  # Tiempo de inicio de la ejecución
+driver = webdriver.Chrome(options=chrome_options)
+
+results = []
+
+sku = {
+    "petdotu194": "https://petcity.cl/tienda/acana-classic-wild-coast-2-kgs",
+    "petdotu160": "https://petcity.cl/tienda/acana-free-run-poultry-perro-5-9-kgs",
+    "petdotu135": "https://petcity.cl/tienda/advantage-gato-pipeta-4-8-kgs",
+    "petdotu142": "https://petcity.cl/tienda/advantage-gato-pipeta-0-4-kgs",
+    "petdotu115": "https://petcity.cl/tienda/advocate-cat-pipeta-0-8-ml-4-8-kg",
+    "petdotu98": "https://petcity.cl/tienda/shampoo-med-allercalm-250ml",
+    "petdotu125": "https://petcity.cl/tienda/arena-america-litter-clean-paws-odor-seal-15kg",
+    "petdotu84": "https://petcity.cl/tienda/arena-america-litter-15-kgs",
+    "petdotu72": "https://petcity.cl/tienda/arena-america-litter-odor-seal-lavanda-15kg",
+    "petdotu132": "https://petcity.cl/tienda/belcando-finest-gf-senior/?attribute_pa_formato=12-5-kgs",
+    "petdotu49": "https://petcity.cl/tienda/bil-jac-select-small-2-7-kgs",
+    "petdotu181": "https://petcity.cl/tienda/bravecto-40-56-kg",
+    "petdotu28": "https://petcity.cl/tienda/bravecto-20-40kg",
+    "petdotu32": "https://petcity.cl/tienda/bravecto-2-4-5kg",
+    "petdotu30": "https://petcity.cl/tienda/bravecto-4-5-10kg/",
+    "petdotu29": "https://petcity.cl/tienda/bravecto-10-20kg",
+    "petdotu148": "https://petcity.cl/tienda/bravecto-gato-2-8-a-6-25-kgs-250-mg/",
+    "petdotu171": "https://petcity.cl/tienda/bravery-chicken-puppy-large-medium-breeds-12-kg/",
+    "petdotu53": "https://petcity.cl/tienda/brit-care-adulto-medium-breed-lamb-rice-12-kgs/",
+    "petdotu122": "https://petcity.cl/tienda/brit-care-adult-small-breed-lamb-rice-3-kgs/",
+    "petdotu52": "https://petcity.cl/tienda/brit-care-adult-small-breed-lamb-rice-7-kgs/",
+    "petdotu130": "https://petcity.cl/tienda/brit-care-cat-gf-haircare-helthy-shiny-coat-7-kgs",
+    "petdotu127": "https://petcity.cl/tienda/brit-care-cat-gf-kitten-healthy-growth-development-2-kgs/",
+    "petdotu134": "https://petcity.cl/tienda/brit-care-cat-gf-senior-weight-control-7-kgs/",
+    "petdotu155": "https://petcity.cl/tienda/brit-care-cat-gf-sterilized-urinary-2-kgs/",
+    "petdotu55": "https://petcity.cl/tienda/brit-care-cat-gf-sterilized-urinary-7-kgs",
+    "petdotu110": "https://petcity.cl/tienda/brit-care-cat-gf-sterilized-weight-control-7-kgs/",
+    "petdotu116": "https://petcity.cl/tienda/brit-care-gf-adult-large-breed-salmon-12-kgs/",
+    "petdotu57": "https://petcity.cl/tienda/brit-care-gf-adult-salmon-12-kgs/",
+    "petdotu133": "https://petcity.cl/tienda/brit-care-gf-adult-salmon-3-kgs/",
+    "petdotu58": "https://petcity.cl/tienda/brit-care-gf-puppy-salmon-12-kgs/",
+    "petdotu136": "https://petcity.cl/tienda/brit-care-gf-puppy-salmon-3-kgs/",
+    "petdotu59": "https://petcity.cl/tienda/brit-care-gf-senior-light-salmon-12-kgs/",
+    "petdotu139": "https://petcity.cl/tienda/brit-care-sensitive-venison-potato-12-kgs/",
+    "petdotu106": "https://petcity.cl/tienda/brit-care-puppy-lamb-rice-12-kgs/",
+    "petdotu113": "https://petcity.cl/tienda/brit-care-junior-large-lamb-rice-12-kgs/",
+    "petdotu123": "https://petcity.cl/tienda/brit-care-gf-junior-large-breed-salmon-potato-12-kgs/",
+    "petdotu51": "https://petcity.cl/tienda/brit-care-senior-lam-rice-12-kgs/",
+    "petdotu56": "https://petcity.cl/tienda/brit-care-gf-weight-loss-rabbit-rice-12-kgs/",
+    "petdotu140": "https://petcity.cl/tienda/brit-care-gf-weight-loss-rabbit-rice-3-kgs/",
+    "petdotu37": "https://petcity.cl/tienda/calming-collar-gato/",
+    "petdotu178": "https://petcity.cl/tienda/canigest-combi-16-ml/",
+    "petdotu167": "https://petcity.cl/tienda/clindabone-165mg/",
+    "petdotu83": "https://petcity.cl/tienda/condrovet-30-comprimidos/",
+    "petdotu193": "https://petcity.cl/tienda/doguivit-senior-30-tabletas/",
+    "petdotu143": "https://petcity.cl/tienda/drontal-dog-clinico-10-kgs-2-comp",
+    "petdotu185": "https://petcity.cl/tienda/drontal-dog-clinico-35kg-1comp",
+    "petdotu190": "https://petcity.cl/tienda/excellent-puppy-15-kgs/",
+    "petdotu191": "https://petcity.cl/tienda/excellent-adulto-15-kgs/",
+    "petdotu105": "https://petcity.cl/tienda/excellent-adulto-sensitive-15-kgs/",
+    "petdotu19": "https://petcity.cl/tienda/fit-formula-perro-raza-pequena-10-kgs/",
+    "petdotu18": "https://petcity.cl/tienda/fit-formula-cachorro-10-kgs",
+    "petdotu17": "https://petcity.cl/tienda/fit-formula-adulto-20-kgs",
+    "petdotu15": "https://petcity.cl/tienda/fit-formula-gato-adulto-10-kgs/",
+    "petdotu126": "https://petcity.cl/tienda/fit-formula-senior-raza-pequena-10-kgs/",
+    "petdotu16": "https://petcity.cl/tienda/fit-formula-senior-20-kgs/",
+    "petdotu71": "https://petcity.cl/tienda/florafix-pet-oral-x-15grs/",
+    "petdotu12": "https://petcity.cl/tienda/acana-free-run-poultry-perro-11-3-kgs/",
+    "petdotu11": "https://petcity.cl/tienda/acana-freshwater-fish-perro-11-3-kgs/",
+    "petdotu183": "https://petcity.cl/tienda/hills-canino-mature-sb-6-8-kgs/",
+    "petdotu87": "https://petcity.cl/tienda/itraskin-120ml-susp-oral/",
+    "petdotu65": "https://petcity.cl/tienda/laveta-carnitina-50ml/",
+    "petdotu66": "https://petcity.cl/tienda/laveta-taurine-50ml/",
+    "petdotu164": "https://petcity.cl/tienda/leonardo-adult-duck/?attribute_pa_formato=7-5-kgs",
+    "petdotu152": "https://petcity.cl/tienda/leonardo-adult-light/?attribute_pa_formato=7-5-kgs",
+    "petdotu151": "https://petcity.cl/tienda/leonardo-adult-senior/?attribute_pa_formato=2-kgs",
+    "petdotu161": "https://petcity.cl/tienda/leonardo-adult-senior/?attribute_pa_formato=7-5-kgs",
+    "petdotu13": "https://petcity.cl/tienda/fit-formula-adulto-light-20-kgs/",
+    "petdotu162": "https://petcity.cl/tienda/meloxivet-60ml/",
+    "petdotu70": "https://petcity.cl/tienda/nexgard-antiparasitario-15-1-30-kgs-3-comprimido/",
+    "petdotu189": "https://petcity.cl/tienda/nexgard-spectra/?attribute_peso=3.6+-+7.5+Kg",
+    "petdotu147": "https://petcity.cl/tienda/nexgard-spectra/?attribute_peso=30+-+60+Kg",
+    "petdotu68": "https://petcity.cl/tienda/nexgard-spectra/?attribute_peso=7+-+15+Kg",
+    "petdotu8": "https://petcity.cl/tienda/acana-puppy-junior-perro-11-3-kgs/",
+    "petdotu179": "https://petcity.cl/tienda/shampoo-med-regepipel-plus-150-ml/",
+    "petdotu5": "https://petcity.cl/tienda/revolution-plus-cat-1-25-2-5-kgs-0-25-ml/",
+    "petdotu4": "https://petcity.cl/tienda/revolution-plus-cat-0-5-ml-2-5-5-kgs/",
+    "petdotu27": "https://petcity.cl/tienda/rimadyl-14-comprimidos/?attribute_miligramos=100+Mg",
+    "petdotu207": "https://petcity.cl/tienda/silimadrag-jarabe-120ml/",
+    "petdotu203": "https://petcity.cl/tienda/simparica-10-mg-2-6-5-kg-1-comprimido/",
+    "petdotu169": "https://petcity.cl/tienda/simparica-10-mg-2-6-5-kg-3-comprimidos/",
+    "petdotu24": "https://petcity.cl/tienda/simparica-20-mg-5-1-10-k-x-3-comp/",
+    "petdotu22": "https://petcity.cl/tienda/simparica-40mg-10-1-20k-x1-comp/",
+    "petdotu23": "https://petcity.cl/tienda/simparica-40-mg-10-20-kg-x3-comp/",
+    "petdotu21": "https://petcity.cl/tienda/simparica-80-mg-20-40-kg-1-comprimido",
+    "petdotu89": "https://petcity.cl/tienda/sucravet-100-ml/",
+    "petdotu210": "https://petcity.cl/tienda/superpet-omega-gatos-125-ml"
 }
+sku2 = {    "petdotu194": "https://petcity.cl/tienda/acana-classic-wild-coast-2-kgs"}
+results = []
 
-response = requests.request("POST", url, data=payload, headers=headers)
+for sku_key, url in sku.items():
+    driver.get(url)
+    precio_oferta = "No disponible"
+    precio_normal = "No disponible"
+    stock= "Con Stock"
+    try:
+        # Intenta obtener el precio de oferta
+        precio_oferta_element = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]') #Cambiar
+        precio_oferta = precio_oferta_element.text  # Guarda el precio de oferta
+        stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
+        stock = stock_element.text
+    except NoSuchElementException:
+        pass  # Si no se encuentra el precio de oferta, se continuará con el siguiente bloque de código
 
-print(response.text)
+    try:
+        # Intenta obtener el precio normal
+        precio_normal_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/form/div/div[1]/div[2]/span/ins/span') #Cambiar
+        precio_normal = precio_normal_element.text  # Guarda el precio normal
+        stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
+        stock = stock_element.text
+    except NoSuchElementException:
+        pass  # Si no se encuentra el precio normal, se continuará con el siguiente bloque de código
+
+    if precio_oferta == "No disponible" and precio_normal == "No disponible":
+        try:
+            # Si no se puede encontrar ni el precio de oferta ni el precio normal, intenta con el tercer XPath
+            precio_normal_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]') #Cambiar
+            precio_normal = precio_normal_element.text  # Guarda el precio normal
+            stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
+            stock = stock_element.text
+        except NoSuchElementException as e:
+            print(f"No se pudo encontrar el precio en la URL {url} - {e}")
+
+    data = {
+        "SKU": sku_key,
+        "Precio": precio_normal,
+        "Precio_oferta": precio_oferta,
+        "Stock" :stock
+    }
+    results.append(data)
+    print(data)
+    time.sleep(0.5)
+driver.quit()
+
+
+df = pd.DataFrame(results)
+
+# Guardar el DataFrame en un archivo Excel
+# nombre_archivo = "datos_productos.xlsx"  # Nombre del archivo Excel
+# df.to_excel(nombre_archivo, index=False)  # El parámetro index=False evita que se incluyan los índices en el archivo Excel
+# print(f"Datos guardados en {nombre_archivo}")
+
+
+end_time = time.time()  # Tiempo de finalización de la ejecución
+execution_time = end_time - start_time
+print("Tiempo de ejecución: %.2f segundos" % execution_time)
+
+#Fecha de Extraccion
+now = datetime.datetime.now()
+now_str = now.strftime('%Y-%m-%d %H:%M:%S')
+data = {"":now_str}
+json_data = json.dumps(data)
+values = [[json_data]]
+result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+							range='petcity!k2',#CAMBIAR
+							valueInputOption='USER_ENTERED',
+							body={'values':values}).execute()
+
+
+#Valores que se pasan a Sheets
+values = [[item['SKU'], item['Precio'],item['Precio_oferta']] for item in results]
+result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+							range='petcity!A2:E',#CAMBIAR
+							valueInputOption='USER_ENTERED',
+							body={'values':values}).execute()
+print(f"Datos insertados correctamente")
+
+#Valores que se pasan a Sheets
+values = [[item['Stock']] for item in results]
+result = sheet.values().update(spreadsheetId=SPREADSHEET_ID,
+							range='petcity!M2:N',#CAMBIAR
+							valueInputOption='USER_ENTERED',
+							body={'values':values}).execute()
+print(f"Datos insertados correctamente")
+
+
+df = pd.DataFrame(results)
+print(df)
+print(df.head)
+
+
+competitor = "Tus Mascotas"  # Cambiar 
+# Enviar datos a otro Google Sheets
+SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+KEY = 'key.json'
+NEW_SPREADSHEET_ID = '1lLfl_jSGUEtitfsezo_zz53Bn2zAzID73VtxIi4dKRo'  # ID de la nueva hoja de cálculo
+
+creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
+service = build('sheets', 'v4', credentials=creds)
+sheet = service.spreadsheets()
+
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='petvet!A:A').execute() #Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[row['SKU'], "No disponible",competitor, row['Precio'], now_str] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+
+print(f"Datos insertados correctamente en la nueva hoja de Google Sheets en el rango {update_range}")
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='Stock!A:A').execute()  # Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+# Convertir resultados a la lista de valores
+values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+print(values)
+update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()

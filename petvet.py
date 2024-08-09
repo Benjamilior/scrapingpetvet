@@ -67,7 +67,7 @@ urls = {
     "43596219056289": "https://petvet.cl/products/pro-plan-gato-adulto-esterilizado.js",
     "42310076858529": "https://petvet.cl/products/doguivit-senior-30-comprimidos.js",
     "40152479039649": "https://petvet.cl/products/paz-pet-suspension-oral.js",
-    "40152448958625": "https://petvet.cl/products/naxpet-gato-perro.js",
+    "40152448958625": "https://petvet.cl/products/naxpet-10-mg-10-comprimidos.js",
     "44279760748705": "https://petvet.cl/products/vetgastril-50-ml.js",
     "42463409701025": "https://petvet.cl/products/senilpet-cerebral-5-x-60-comp.js",
     "40152459051169": "https://petvet.cl/products/petever-shampoo.js",

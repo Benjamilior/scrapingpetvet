@@ -116,7 +116,7 @@ sku = {
     "petdotu175": "https://www.bigos.cl/alimentos-para-gatos/nutrience-original-indoor-para-gatos#/500-tamano-5_kg_bolsa",
     "petdotu180": "https://www.bigos.cl/alimentos-para-perros/proplan-puppy-para-cachorro-raza-mediana#/520-tamano-15_kg_saco",
     "petdotu186": "https://www.bigos.cl/vitaminas-para-perros/vetnil-glicopan-125-ml",
-    "petdotu187": "https://www.bigos.cl/alimentos-para-gatos/proplan-urinary-optitract-para-gatos-adultos",
+    "petdotu187": "https://www.bigos.cl/alimentos-para-gatos/proplan-urinary-optitract-para-gatos-adultos#/518-peso-3_kg_bolsa",
     "petdotu192": "https://www.bigos.cl/alimentos-para-gatos/proplan-sterilized-optirenal-para-gatos-adultos",
     "petdotu193": "https://www.bigos.cl/vitaminas-para-perros/dragpharma-doguivit-perro-senior-30-comp",
     "petdotu201": "https://www.bigos.cl/vitaminas-para-perros/dragpharma-senilpet-60-comp",
@@ -125,7 +125,7 @@ sku = {
     "petdotu207": "https://www.bigos.cl/vitaminas-para-perros/dragpharma-silimadrag-120-ml",
     "petdotu208": "https://www.bigos.cl/vitaminas-para-perros/vetnil-hemolitan-60-ml",
     "petdotu210": "https://www.bigos.cl/vitaminas-para-gatos/dragpharma-superpet-gato-125-ml",
-    "petdotu184": "https://www.bigos.cl/alimentos-para-perros/proplan-adulto-para-perro-raza-pequena"
+    "petdotu184": "https://www.bigos.cl/alimentos-para-perros/proplan-adulto-para-perro-raza-pequena#/518-peso-3_kg_bolsa"
 }
 
 sku2 = {"petdotu97": "https://www.bigos.cl/alimentos-para-perros/acana-free-run-poultry-para-perros#/506-tamano-113_kg_saco"}
@@ -137,7 +137,7 @@ for sku_key, url in sku.items():
     precio_normal = "No disponible"
     stock   = "Con Stock"
     
-    time.sleep(3)
+    time.sleep(3.5)
     
     try:
         # Intenta obtener el precio de oferta
