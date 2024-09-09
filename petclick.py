@@ -169,7 +169,6 @@ sku= {
     "petdotu192": "https://www.petclick.cl/alimento-para-gatos/7-678-proplan-sterilized-cat-7613039947784.html#/3-tamano-75kg",
     "petdotu195": "https://www.petclick.cl/medicamentos/347-paz-pet-60ml-suspension-oral-7800006005589.html",
     "petdotu198": "https://www.petclick.cl/medicamentos/292-naxpet-10mg-comprimidos-7800006002410.html",
-    "petdotu200": "https://www.petclick.cl/medicamentos/958-vetgastril-20ml-8414042005466.html",
     "petdotu201": "https://www.petclick.cl/medicamentos/498-senilpet-cerebral-5-7800006009983.html",
     "petdotu202": "https://www.petclick.cl/shampoos-medicados/245-petever-forte-shampoo-150ml-7800006001291.html",
     "petdotu205": "https://www.petclick.cl/entrenamiento-y-comportamiento/653-adaptil-calm-repuesto-48ml-3411112169344.html",
@@ -317,6 +316,23 @@ values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterro
 # Insertar los resultados en la nueva hoja después de la última fila
 print(values)
 update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+# MANDAR DATOS A LA API ----------------------------------------------------------------------------------------------------
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='apipets!A:A').execute() #Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[row['SKU'], competitor, row['Precio'], "No disponible", row["Stock"]] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+update_range = f'apipets!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
 result = sheet.values().update(
     spreadsheetId=NEW_SPREADSHEET_ID,
     range=update_range,

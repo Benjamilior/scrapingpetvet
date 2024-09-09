@@ -363,7 +363,7 @@ values = result.get('values', [])
 last_row = len(values) + 1  # Obtener el índice de la última fila vacía
 
 # Convertir resultados a la lista de valores
-values = [[row['SKU'], competitor,"No Disponible", row['Precio'], now_str] for _, row in df.iterrows()]
+values = [[row['SKU'], competitor,row['Precio_oferta'], row['Precio'], now_str] for _, row in df.iterrows()]
 
 # Insertar los resultados en la nueva hoja después de la última fila
 update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
@@ -385,6 +385,23 @@ values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterro
 # Insertar los resultados en la nueva hoja después de la última fila
 print(values)
 update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+# MANDAR DATOS A LA API ----------------------------------------------------------------------------------------------------
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='apipets!A:A').execute() #Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[row['SKU'], competitor, row['Precio'], row['Precio_oferta'], row["Stock"]] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+update_range = f'apipets!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
 result = sheet.values().update(
     spreadsheetId=NEW_SPREADSHEET_ID,
     range=update_range,

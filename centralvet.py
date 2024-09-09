@@ -130,19 +130,18 @@ sku = {
     "petdotu142": "https://www.centralvet.cl/higiene-para-gatos/7633-advantage-antipulgas-para-gatos-hasta-4-kg-04-ml-elanco.html",
     "petdotu135": "https://www.centralvet.cl/higiene-para-gatos/13263-advantage-antipulgas-para-gatos-desde-4-hasta-8-kg-elanco.html",
     "petdotu185": "https://www.centralvet.cl/farmacia-para-perros/9892-drontal-plus-antiparasitario-interno-para-perros-sobre-35-kilos-1-comprimido-elanco.html",
-    "petdotu188": "https://www.centralvet.cl/farmacia-para-gatos/26286-drontal-gatos-antiparasitario-interno-1-comprimido-elanco.html",
     "petdotu145": "https://www.centralvet.cl/farmacia-para-perros/23812-neptra-solucion-otica-2-blister-con-1-tubo-de-1ml.html",
     "petdotu149": "https://www.centralvet.cl/inicio/21209-advocate-04-ml-para-gatos-pequenos-y-hurones-hasta-4-kg-de-peso-antiparasitario-interno-y-externo-elanco.html",
     "petdotu157": "https://www.centralvet.cl/farmacia-para-perros/6236-oftavet-solucion-oftalmica-5-ml-dragpharma.html",
     "petdotu158": "https://www.centralvet.cl/farmacia-para-perros/24410-hemolivet-para-perros-y-gatos-30-comprimidos-vitanimal.html",
     "petdotu154": "https://www.centralvet.cl/farmacia-para-perros/25270-canigest-combi-pasta-32-ml-probiotico-para-mascotas.html",
     "petdotu178": "https://www.centralvet.cl/farmacia-para-perros/24059-canigest-combi-pasta-16-ml-probiotico-para-mascotas.html",
-    "petdotu165": "https://www.centralvet.cl/gatos-adultos/14724-20824-nutrience-original-gatos-adultos-polloarroz-integral.html#/1111111116-peso-25_kg",
+    "petdotu165": "https://www.centralvet.cl/gatos-adultos/14724-20825-nutrience-original-gatos-adultos-polloarroz-integral.html#/1111111121-peso-5_kg",
     "petdotu167": "https://www.centralvet.cl/farmacia-para-perros/6022-clindabone-clindamicina-165-mg-caja-20-comprimidos.html",
    "petdotu171": "https://www.centralvet.cl/alimentos/21804-20888-bravery-chicken-perro-adulto-mediumlarge-breed.html#/1111111130-peso-12_kg",
     "petdotu173": "https://www.centralvet.cl/alimentos-de-prescripcion-veterinaria-gatos/20639-pro-plan-gato-urinary-optitract-75-kg.html",
     "petdotu174": "https://www.centralvet.cl/laboratorio-virbac/21629-nutribound-perros-150-ml-virbac.html",
-    "petdotu175": "https://www.centralvet.cl/gatos-adultos/18445-20827-nutrience-original-gatos-adultos-indoorhairball.html#/1111111121-peso-5_kg",
+    "petdotu175": "https://www.centralvet.cl/gatos-adultos/26617-nutrience-original-gatos-adultos-indoorhairball-5-kg.html",
     "petdotu179": "https://www.centralvet.cl/farmacia-para-perros/6287-regepipel-plus-shampoo-medicado-150ml-drag-pharma.html",
     "petdotu180": "https://www.centralvet.cl/alimentos/20655-pro-plan-perro-puppy-cachorro-de-razas-medianas-15-kg-.html",
     "petdotu182": "https://www.centralvet.cl/farmacia-para-perros/6136-hematon-b12-jarabe-100-ml.html",
@@ -294,6 +293,23 @@ values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterro
 # Insertar los resultados en la nueva hoja después de la última fila
 print(values)
 update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+# MANDAR DATOS A LA API ----------------------------------------------------------------------------------------------------
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='apipets!A:A').execute() #Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[row['SKU'], competitor, row['Precio'], row['Precio_oferta'], row["Stock"]] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+update_range = f'apipets!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
 result = sheet.values().update(
     spreadsheetId=NEW_SPREADSHEET_ID,
     range=update_range,

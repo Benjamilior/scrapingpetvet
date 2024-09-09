@@ -105,7 +105,7 @@ sku = {
     "petdotu77": "https://www.tusmascotas.cl/product/oxtrin-30-comprimidos/",
     "petdotu89": "https://www.tusmascotas.cl/product/sucravet-sucralfato-100ml/",
     "petdotu71": "https://www.tusmascotas.cl/product/flora-fix-pet-15g/",
-    "petdotu167": "https://www.tusmascotas.cl/product/clindabone-clindamicina-165mg-20-comp/#:~:text=Clindabone%20Clindamicina%20165mg%2020%20comp%20es%20indicada%20para%20el%20tratamiento,perfringens%20y%20muchas%20especies%20de",
+    "petdotu167": "https://www.tusmascotas.cl/product/clindabone-clindamicina-165mg-20-comp/",
     "petdotu91": "https://www.tusmascotas.cl/product/dermisolona-suspension-oral-30ml/",
     "petdotu95": "https://www.tusmascotas.cl/product/dermisolona-10-comp-20-mg/",
     "petdotu193": "https://www.tusmascotas.cl/product/multivitaminico-doguivit-senior-30-comp/",
@@ -165,7 +165,7 @@ sku = {
     "petdotu22": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-1-comprimido-101-kg-a-20-kg/",
     "petdotu23": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-10-kg-a-20-kg/",
     "petdotu25": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-1-comprimido-51-kg-a-10-kg/",
-    "petdotu24": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-5-kg-a-10-kg/",
+    # "petdotu24": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-5-kg-a-10-kg/",
     "petdotu21": "https://www.tusmascotas.cl/product/simparica-1-comprimidos/",
     "petdotu20": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-20-kg-a-40-kg/",
     "petdotu210": "https://www.tusmascotas.cl/product/superpet-omega-36-gato-125ml/",
@@ -199,7 +199,6 @@ sku = {
     "petdotu35": "https://www.tusmascotas.cl/product/calming-home-spray-125-ml/",
     "petdotu36": "https://www.tusmascotas.cl/product/calming-cat-treats-35gr/",
     "petdotu38": "https://www.tusmascotas.cl/product/calming-tabletas-de-beaphar-20-und-dog-cat/",
-  
     "petdotu50": "https://www.tusmascotas.cl/product/bil-jac-puppy-dog-food-13-6kg/",
     "petdotu33": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-gatos-12-kg-a-28-kg/",
     "petdotu31": "https://www.tusmascotas.cl/product/bravecto-gatos-250mg-28-625kg/",
@@ -318,7 +317,7 @@ values = result.get('values', [])
 last_row = len(values) + 1  # Obtener el índice de la última fila vacía
 
 # Convertir resultados a la lista de valores
-values = [[row['SKU'], "No disponible",competitor, row['Precio'], now_str] for _, row in df.iterrows()]
+values = [[row['SKU'],competitor,row["Precio_oferta"], row['Precio'], now_str] for _, row in df.iterrows()]
 
 # Insertar los resultados en la nueva hoja después de la última fila
 update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
@@ -340,6 +339,23 @@ values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterro
 # Insertar los resultados en la nueva hoja después de la última fila
 print(values)
 update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+# MANDAR DATOS A LA API ----------------------------------------------------------------------------------------------------
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='apipets!A:A').execute() #Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[row['SKU'], competitor, row['Precio_oferta'], row['Precio'], row["Stock"]] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+update_range = f'apipets!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
 result = sheet.values().update(
     spreadsheetId=NEW_SPREADSHEET_ID,
     range=update_range,

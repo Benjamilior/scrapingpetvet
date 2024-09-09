@@ -54,7 +54,7 @@ sku= {
     "petdotu30": "https://braloy.cl/bravecto/619-bravecto-45-a-10-kg.html",
     "petdotu29": "https://braloy.cl/bravecto/316-bravecto-10-a-20-kg.html",
     "petdotu28": "https://braloy.cl/bravecto/1035-bravecto-20-a-40-kg.html",
-    "petdotu181": "https://braloy.cl/bravecto/850-bravecto-40-a-56-kg.html",
+    "petdotu181": "https://braloy.cl/mascotas/7419-simparica-80-mg-20-a-40-kg-1-comprimido.html",
     "petdotu84": "https://braloy.cl/america-litter/1332-arena-america-litter-ultra-odor-seal-15-kg.html",
     "petdotu72": "https://braloy.cl/america-litter/2150-arena-america-litter-ultra-odor-seal-lavanda-15-kg.html",
     "petdotu27": "https://braloy.cl/zoetis/1452-rimadyl-100-mg-14-comprimidos.html",
@@ -69,7 +69,7 @@ sku= {
     "petdotu23": "https://braloy.cl/mascotas/7424-simparica-40-mg-10-a-20-kg-3-comprimidos.html",
     "petdotu24": "https://braloy.cl/mascotas/7423-simparica-20-mg-5-a-10-kg-3-comprimidos.html",
     "petdotu25": "https://braloy.cl/mascotas/7417-simparica-20-mg-5-a-10-kg-1-comprimido.html",
-    "petdotu21": "https://braloy.cl/mascotas/7426-simparica-80-mg-20-a-40-kg-3-comprimidos.html",
+    "petdotu21": "https://braloy.cl/mascotas/7419-simparica-80-mg-20-a-40-kg-1-comprimido.html",
     "petdotu20": "https://braloy.cl/mascotas/7426-simparica-80-mg-20-a-40-kg-3-comprimidos.html",
     "petdotu203": "https://braloy.cl/mascotas/7416-simparica-10-mg-25-a-5-kg-1-comprimido.html",
     "petdotu169": "https://braloy.cl/mascotas/7421-simparica-10-mg-25-a-5-kg-3-comprimidos.html",
@@ -82,7 +82,7 @@ sku= {
     "petdotu63": "https://braloy.cl/oven-baked/3224-oven-baked-tradition-adulto-all-breeds-fish-perro-1134-kg.html",
     "petdotu62": "https://braloy.cl/oven-baked/2128-oven-baked-tradition-adulto-all-breeds-chicken-perro-1134-kg.html",
     "petdotu64": "https://braloy.cl/oven-baked/3234-oven-baked-tradition-senior-all-breeds-chicken-perro-1134-kg.html",
-    "petdotu78": "https://braloy.cl/inicio/7960-arena-traper-natural-4-kg.html",
+    "petdotu78": "https://braloy.cl/inicio/7961-arena-traper-natural-9-kg.html",
     "petdotu18": "https://braloy.cl/fit-formula/645-fit-formula-cachorros-10-kg.html",
     "petdotu15": "https://braloy.cl/fit-formula/386-fit-formula-gato-10-kg.html",
     "petdotu93": "https://braloy.cl/adaptil/1459-adaptil-difusor-repuesto-48-ml.html",
@@ -118,7 +118,6 @@ sku= {
     "petdotu135": "https://braloy.cl/bayer/1433-advantage-gato-4-a-8-kg.html",
     "petdotu143": "https://braloy.cl/bayer/1456-drontal-plus-perro-2-comprimidos-10-kg.html",
     "petdotu185": "https://braloy.cl/bayer/1457-drontal-plus-perro-1-comprimido-35-kg.html",
-    "petdotu188": "https://braloy.cl/bayer/1454-drontal-gatos-1-comprimido.html",
     "petdotu150": "https://braloy.cl/inicio/7875-osteodrag-ha-30-comprimidos.html",
     "petdotu177": "https://braloy.cl/bayer/3042-advocate-perro-10-a-25-kg.html",
     "petdotu196": "https://braloy.cl/bayer/3043-advocate-perro-25-a-40-kg.html",
@@ -260,7 +259,7 @@ values = result.get('values', [])
 last_row = len(values) + 1  # Obtener el índice de la última fila vacía
 
 # Convertir resultados a la lista de valores
-values = [[row['SKU'], "No Disponible",competitor, row['Precio'], now_str] for _, row in df.iterrows()]
+values = [[row['SKU'],competitor, row['Precio'],row["Precio_oferta"], now_str] for _, row in df.iterrows()]
 
 # Insertar los resultados en la nueva hoja después de la última fila
 update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
@@ -272,7 +271,7 @@ result = sheet.values().update(
 ).execute()
 
 print(f"Datos insertados correctamente en la nueva hoja de Google Sheets en el rango {update_range}")
-
+#Para Stock BBDD ----------------------------------------------------------------------------------------------------------------    
 # Obtener la última fila con datos en la nueva hoja
 result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='Stock!A:A').execute()  # Cambiar donde llega la info
 values = result.get('values', [])
@@ -284,6 +283,23 @@ values = [[now_str, competitor,row['SKU'], row['Stock']] for _, row in df.iterro
 # Insertar los resultados en la nueva hoja después de la última fila
 print(values)
 update_range = f'Stock!A{last_row}:E{last_row + len(values) - 1}'  # Cambiar
+result = sheet.values().update(
+    spreadsheetId=NEW_SPREADSHEET_ID,
+    range=update_range,
+    valueInputOption='USER_ENTERED',
+    body={'values': values}
+).execute()
+# MANDAR DATOS A LA API ----------------------------------------------------------------------------------------------------
+# Obtener la última fila con datos en la nueva hoja
+result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='apipets!A:A').execute() #Cambiar donde llega la info
+values = result.get('values', [])
+last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+
+# Convertir resultados a la lista de valores
+values = [[row['SKU'], competitor, row['Precio'], row['Precio_oferta'], row["Stock"]] for _, row in df.iterrows()]
+
+# Insertar los resultados en la nueva hoja después de la última fila
+update_range = f'apipets!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
 result = sheet.values().update(
     spreadsheetId=NEW_SPREADSHEET_ID,
     range=update_range,

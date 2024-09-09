@@ -223,34 +223,35 @@ df = pd.DataFrame(results)
 print(df)
 print(df.head)
 
+# #Para Precio BBDD ----------------------------------------------------------------------------------------------------------------    
+# competitor = "petcity"  # Cambiar 
+# # Enviar datos a otro Google Sheets
+# SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
+# KEY = 'key.json'
+# NEW_SPREADSHEET_ID = '1lLfl_jSGUEtitfsezo_zz53Bn2zAzID73VtxIi4dKRo'  # ID de la nueva hoja de cálculo
 
-competitor = "Tus Mascotas"  # Cambiar 
-# Enviar datos a otro Google Sheets
-SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
-KEY = 'key.json'
-NEW_SPREADSHEET_ID = '1lLfl_jSGUEtitfsezo_zz53Bn2zAzID73VtxIi4dKRo'  # ID de la nueva hoja de cálculo
+# creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
+# service = build('sheets', 'v4', credentials=creds)
+# sheet = service.spreadsheets()
 
-creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
-service = build('sheets', 'v4', credentials=creds)
-sheet = service.spreadsheets()
+# # Obtener la última fila con datos en la nueva hoja
+# result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='petvet!A:A').execute() #Cambiar donde llega la info
+# values = result.get('values', [])
+# last_row = len(values) + 1  # Obtener el índice de la última fila vacía
 
-# Obtener la última fila con datos en la nueva hoja
-result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='petvet!A:A').execute() #Cambiar donde llega la info
-values = result.get('values', [])
-last_row = len(values) + 1  # Obtener el índice de la última fila vacía
+# # Convertir resultados a la lista de valores
+# values = [[row['SKU'], "No disponible",competitor, row['Precio'], now_str] for _, row in df.iterrows()]
 
-# Convertir resultados a la lista de valores
-values = [[row['SKU'], "No disponible",competitor, row['Precio'], now_str] for _, row in df.iterrows()]
+# # Insertar los resultados en la nueva hoja después de la última fila
+# update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
+# result = sheet.values().update(
+#     spreadsheetId=NEW_SPREADSHEET_ID,
+#     range=update_range,
+#     valueInputOption='USER_ENTERED',
+#     body={'values': values}
+# ).execute()
 
-# Insertar los resultados en la nueva hoja después de la última fila
-update_range = f'petvet!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
-result = sheet.values().update(
-    spreadsheetId=NEW_SPREADSHEET_ID,
-    range=update_range,
-    valueInputOption='USER_ENTERED',
-    body={'values': values}
-).execute()
-
+#Para Stock BBDD ----------------------------------------------------------------------------------------------------------------    
 print(f"Datos insertados correctamente en la nueva hoja de Google Sheets en el rango {update_range}")
 # Obtener la última fila con datos en la nueva hoja
 result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='Stock!A:A').execute()  # Cambiar donde llega la info

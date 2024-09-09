@@ -3,19 +3,22 @@ import time
 
 # Lista de nombres de los scripts que deseas ejecutar
 scripts = [
-    "scrapybestforpets.py",
-    "superzoobackup.py",
-    "scrapybigos.py",
-    "scrapybraloy.py",
-    "scrapycentralvet.py",
-    "scrapypetclick.py",
-    "scrapypunto.py",
-    "petvet.py",
-    "scrapytusmascotas.py",
-    "petco.py",
-    "amigales.py",
     "pk.py",
-    "petcity.py"
+    "petcity.py",
+    "bestforpets.py",
+    "superzoobackup.py",
+    "bigos.py",
+    "braloy.py",
+    "petclick.py",
+    "punto.py",
+    "petvet.py",
+    "tusmascotas.py",
+    "petco.py",
+    "amigaletests.py",
+    "centralvet.py",
+    "updateapi.py",
+    "deletewow.py"
+    
 ]
 
 # Iteramos sobre la lista de scripts y los ejecutamos uno por uno
