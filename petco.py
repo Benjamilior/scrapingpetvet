@@ -42,11 +42,12 @@ driver = webdriver.Chrome(options=chrome_options)
 # #URLs
 
 sku = {
-    "petdotu6": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Natural/Acana-Alimento-Natural-Seco-para-Perro-Acana-Classic-Prairie-Poultry%2C-11-35-kg/p/601190",
     "petdotu194": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Natural/Acana-Alimento-Natural-Seco-para-Perro-Acana-Classic-Wild-Coast%2C-11-35-kg/p/601221",
     "petdotu7": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Natural/Acana-Alimento-Natural-Seco-para-Perro-Acana-Classic-Wild-Coast%2C-11-35-kg/p/601191",
+    "petdotu160": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Natural/Acana-Alimento-Natural-Seco-para-Perro-Free-Run-Poultry%2C-11-35-kg/p/601207",
     "petdotu197": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Alimento/Acana-Alimento-Natural-Seco-para-Gato-Indoor-Entr%C3%A9e%2C-4-5-kg/p/601241",
     "petdotu176": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Alimento/Acana-Alimento-Natural-Seco-para-Gato-Wild-Atlantic%2C-4-5-kg/p/601253",
+    "petdotu6": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Natural/Acana-Alimento-Natural-Seco-para-Perro-Acana-Classic-Prairie-Poultry%2C-11-35-kg/p/601190",
     "petdotu97": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Salud-y-Bienestar/Estr%C3%A9s-y-Ansiedad/Ceva-Adaptil-Calm-Collar-con-Efecto-Calmante-para-Perro%2C-Mediano-Grande/p/122231",
     "petdotu96": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Salud-y-Bienestar/Estr%C3%A9s-y-Ansiedad/Ceva-Adaptil-Calm-Collar-con-Efecto-Calmante-para-Perro%2C-Chico-Mediano/p/122230",
     "petdotu93": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Salud-y-Bienestar/Estr%C3%A9s-y-Ansiedad/Ceva-Adaptil-Calm-Set-Difusor-y-Repuesto-con-Efecto-Calmante-para-Perro%2C-48-ml/p/122240",
@@ -69,6 +70,7 @@ sku = {
     "petdotu188": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Salud-y-Bienestar/Drontal-Comprimidos-Antiparasitarios-Internos-de-Amplio-Espectro-para-Gato%2C-2-Tabletas/p/602010",
     "petdotu143": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Salud-y-Bienestar/Desparasitantes/Drontal-Plus-Saborizado-Comprimidos-Antiparasitarios-Internos-para-Perro%2C-35-kg/p/602011",
     "petdotu185": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Salud-y-Bienestar/Desparasitantes/Drontal-Plus-Saborizado-Comprimidos-Antiparasitarios-Internos-para-Perro%2C-35-kg/p/602012",
+    "petdotu14": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Natural/Acana-Singles-Alimento-Natural-Seco-para-Perro-Duck-%26-Pear%2C-10-20-kg/p/601199",
     "petdotu42": "https://www.petco.cl/petco-chile/es_CL/MARCAS/Ceva/Feliway-Classic-Set-Difusor-y-Repuesto-con-Efecto-Tranquilizante-para-Gato%2C-48-ml/p/122244",
     "petdotu43": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Ceva-Feliway-Friends-Set-Difusor-y-Repuesto-con-Efecto-de-Apaciguamiento-para-Gato%2C-48-ml/p/126895",
     "petdotu41": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Salud-y-Bienestar/Estr%C3%A9s-y-Ansiedad/Feliway-Friends-Repuesto-con-Efecto-de-Apaciguamiento-para-Gato%2C-48-ml/p/126896",
@@ -84,16 +86,18 @@ sku = {
     "petdotu161": "https://www.petco.cl/petco-chile/es_CL/MARCAS/Leonardo/Leonardo-Alimento-Natural-Seco-para-Senior-Gato%2C-7-5-kg/p/600461",
     "petdotu189": "https://www.petco.cl/petco-chile/es_CL/MARCAS/Nexgard-Spectra/NexGard-Spectra-Masticable-Desparasitante-Externo-e-Interno-para-Perro%2C-Chico/p/138415",
     "petdotu147": "https://www.petco.cl/petco-chile/es_CL/MARCAS/Nexgard-Spectra/NexGard-Spectra-Masticable-Desparasitante-Externo-e-Interno-para-Perro%2C-X-Grande/p/138418",
-    "petdotu153": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Orijen-Alimento-Natural-Seco-para-Gato-Original-Cat%2C-5-4-kg/p/601237",
+    "petdotu68": "https://www.petco.cl/petco-chile/es_CL/App/Antiparasitarios/NexGard-Spectra-Masticable-Desparasitante-Externo-e-Interno-para-Perro%2C-Mediano/p/138416",
     "petdotu114": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Perros-Talla-Peque%C3%B1a/Orijen-Alimento-Natural-Seco-para-Perro-Small-Breed%2C-4-5-kg/p/601236",
     "petdotu131": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-para-Cachorro/Orijen-Alimento-Natural-Seco-para-Perro-Cachorro%2C-11-35-kg/p/601204",
     "petdotu192": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Pro-Plan-Alimento-Seco-para-Gato-Esterilizado-de-Todas-las-Razas%2C-1-kg/p/600047",
-    
+    "petdotu187": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Pro-Plan-Urinary-Alimento-Seco-para-Gato-Adulto-de-Todas-las-Razas%2C-1-kg/p/600049",
     "petdotu173": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Pro-Plan-Urinary-Alimento-Seco-para-Gato-Adulto-de-Todas-las-Razas%2C-1-kg/p/600049",
+    "petdotu184": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Pro-Plan-Sensitive-Skin-Alimento-Seco-para-Perro-Adulto-de-Raza-Peque%C3%B1a%2C-3-kg/p/600028",
     "petdotu180": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Perros-Talla-Grande/Pro-Plan-Alimento-Seco-para-Cachorro-de-Razas-Medianas%2C-1-kg/p/600001",
     "petdotu8": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-para-Cachorro/Acana-Alimento-Natural-Seco-para-Perro-Cachorro-%26-Junior%2C-11-35-kg/p/601194",
     "petdotu5": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Salud-y-Bienestar/Revolution-Plus-15-mg-2-5-mg-Pipeta-Antiparasitaria-Externa-e-Interna-para-Gato%2C-1-25--2-5-kg/p/601041",
     "petdotu4": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Salud-y-Bienestar/Revolution-Plus-30-mg-5-mg-Pipeta-Antiparasitaria-Externa-e-Interna-para-Gato%2C-2-5---5-kg/p/601042",
+    "petdotu203": "https://www.petco.cl/petco-chile/es_CL/App/Zoetis/Zoetis-Simparica-Masticable-Desparasitante-Externo-para-Perro%2C-2-5-5-kg/p/139960",
     "petdotu25": "https://www.petco.cl/petco-chile/es_CL/App/Zoetis/Zoetis-Simparica-Masticable-Desparasitante-Externo-para-Perro%2C-5-10-kg/p/139961",
     "petdotu22": "https://www.petco.cl/petco-chile/es_CL/App/Zoetis/Zoetis-Simparica-Masticable-Desparasitante-Externo-para-Perro%2C-10-20-kg/p/139962",
     "petdotu23": "https://www.petco.cl/petco-chile/es_CL/App/Zoetis/Zoetis-Simparica-Masticable-Desparasitante-Externo-para-Perro-10-20-kg%2C-3-Tabletas/p/139958",
@@ -105,9 +109,13 @@ sku = {
     "petdotu45": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Royal-Canin-Alimento-Seco-para-Perro-Medicado-Anallergenic-Canine%2C-8-kg/p/600744",
     "petdotu99": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Medicado-/Hill%27s%C2%A0Prescription-Diet-r-d%2C-Alimento-Seco-Reducci%C3%B3n-de-Peso-para-Perro-Adulto%2C-8-kg/p/105325",
     "petdotu44": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Royal-Canin-Mother-Baby-Cat-Alimento-Seco-para-Gato-en-Gestaci%C3%B3n-Lactancia-Destete-Receta-Pollo%2C-1-5-kg/p/600692",
+    "petdotu80": "https://www.petco.cl/petco-chile/es_CL/MARCAS/Odour-Buster/Odour-Buster-Original-Arena-Sanitaria-Aglutinante-sin-Aroma-para-Gato%2C-14-kg/p/601264",
     "petdotu62": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Oven-Baked-Tradition-Adulto-All-Breeds-Pollo-Perro%2C-11-34-kg/p/600816",
     "petdotu63": "https://www.petco.cl/petco-chile/es_CL/MARCAS/Oven-Baked-Tradition/Oven-Baked-Tradition-Adulto-All-Breeds-Pescado-Perro%2C-11-34-kg/p/600817",
-    "petdotu64": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Perros-Senior/Oven-Baked-Tradition-Senior-Pollo-Perro%2C-5-67-kg/p/600821"
+    "petdotu64": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Perros-Senior/Oven-Baked-Tradition-Senior-Pollo-Perro%2C-5-67-kg/p/600821",
+    "petdotu86": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Premios-/De-Adiestramiento/Wanpy-Snack-de-Entrenamiento-para-Perro-Receta-Cordero%2C-100-g/p/602438",
+    "petdotu222": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Alimento/Alimento-Natural/Acana-Alimento-Natural-Seco-para-Perro-Light-%26-Fit-Formula%2C-11-35-kg/p/601195",
+    "petdotu600": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Gato/Leonardo-Alimento-Natural-Seco-para-Adulto-Libre-de-Granos-Maxi-Gato%2C-7-5-kg/p/600457"
 }
 sku2 = {"petdotu97": "https://www.petco.cl/petco-chile/es_CL/PRODUCTOS/Perro/Salud-y-Bienestar/Estr%C3%A9s-y-Ansiedad/Ceva-Adaptil-Calm-Collar-con-Efecto-Calmante-para-Perro%2C-Mediano-Grande/p/122231"}
 results = []

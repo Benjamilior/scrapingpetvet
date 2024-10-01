@@ -12,12 +12,12 @@ scripts = [
     "petclick.py",
     "punto.py",
     "petvet.py",
-    "tusmascotas.py",
     "petco.py",
     "amigaletests.py",
     "centralvet.py",
+    "tusmascotas.py",
     "updateapi.py",
-    "deletewow.py"
+    "deleterow.py"
     
 ]
 

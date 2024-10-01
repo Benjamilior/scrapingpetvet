@@ -11,6 +11,11 @@ from selenium.common.exceptions import NoSuchElementException
 from selenium.common.exceptions import StaleElementReferenceException
 from selenium.common.exceptions import ElementClickInterceptedException
 
+from selenium.webdriver.support.ui import WebDriverWait
+from selenium.webdriver.support import expected_conditions as EC
+from selenium.common.exceptions import NoSuchElementException, ElementClickInterceptedException
+
+
 from google.oauth2 import service_account
 import pandas as pd
 import json
@@ -44,6 +49,7 @@ sku2 = {
     "petdotu197": {
         "url": "https://www.amigales.cl/acana-entree-gatos-indoor.html",
         "button_xpath": "//*[@id=\"option-label-acana_catfood_size-1308-item-3593\"]"
+        
     },
     "petdotu194": {
         "url": "https://www.amigales.cl/acana-wild-coast-perros.html",
@@ -394,12 +400,12 @@ sku2 = {
         "button_xpath": "-"
     },
     "petdotu18": {
-        "url": "https://www.amigales.cl/fit-formula-cachorro-10kg.html",
-        "button_xpath": "-"
+        "url": "https://www.amigales.cl/fit-formula-cachorro.html",
+        "button_xpath": "//*[@id=\"option-label-fit_formula_dog-1788-item-5174\"]"
     },
     "petdotu15": {
-        "url": "https://www.amigales.cl/fit-formula-gato-adulto-10kg.html",
-        "button_xpath": "-"
+        "url": "https://www.amigales.cl/fit-formula-gato-adulto.html",
+        "button_xpath": "//*[@id=\"option-label-fit_formula_cat-1789-item-5176\"]"
     },
     "petdotu17": {
         "url": "https://www.amigales.cl/fit-formula-perro-adulto-20kg.html",
@@ -740,7 +746,64 @@ sku2 = {
     "petdotu86": {
         "url": "https://www.amigales.cl/wanpy-jerky-cordero.html",
         "button_xpath": "-"
-    }
+    },
+    "petdotu600": {
+        "url": "https://www.amigales.cl/leonardo-maxigf-gatos.html",
+        "button_xpath": "//*[@id=\"option-label-leonardo_maxigf_peso-992-item-2563\"]"
+    },
+    "petdotu194": {
+        "url": "https://www.amigales.cl/acana-wild-coast-perros.html",
+        "button_xpath": "//*[@id=\"option-label-acana_wildcoast_perros-906-item-2334\"]"
+    },
+    "petdotu122": {
+        "url": "https://www.amigales.cl/brit-care-cordero-arroz-perro-raza-pequena.html",
+        "button_xpath": "//*[@id=\"option-label-brit_cordero_pequena-721-item-1761\"]"
+    },
+    "petdotu55": {
+        "url": "https://www.amigales.cl/brit-care-esterilizado-salud-urinaria-gatos.html",
+        "button_xpath": "//*[@id=\"option-label-britcat_missy_peso-877-item-2258\"]"
+    },
+    "petdotu116": {
+        "url": "https://www.amigales.cl/brit-care-salmon-grain-free-perros-razas-grandes.html",
+        "button_xpath": "//*[@id=\"option-label-brit_salmonlarge_dog_peso-1026-item-2668\"]"
+    },
+    "petdotu113": {
+        "url": "https://www.amigales.cl/brit-care-cordero-hipoalergenico-junior-grain-free-perros-raza-grande.html",
+        "button_xpath": "//*[@id=\"option-label-brit_cordero_juniorlarge-868-item-2231\"]"
+    },
+     "petdotu140": {
+        "url": "https://www.amigales.cl/brit-care-conejo-hipoalergenico-perros-sobrepeso.html",
+        "button_xpath": "//*[@id=\"option-label-brit_conejo_perdidapeso-728-item-1787\"]"
+    },
+      "petdotu178": {
+        "url": "https://www.amigales.cl/canigest-combi-16-ml.html",
+        "button_xpath": "-"
+    },
+       "petdotu183": {
+        "url": "https://www.amigales.cl/hills-smallbites-adulto-mayor.html",
+        "button_xpath": "//*[@id=\"option-label-hills_smalbites_adul7_cantidad-651-item-1577\"]"
+    },
+        "petdotu114": {
+        "url": "https://www.amigales.cl/orijen-small-breed-perros.html",
+        "button_xpath": "//*[@id=\"option-label-orijen_smallbreed_size-1336-item-3708\"]"
+    },
+        
+         "petdotu195": {
+        "url": "https://www.amigales.cl/paz-pet-modificador-conducta-perros.html",
+        "button_xpath": "-"
+    },
+        "petdotu187": {
+        "url": "https://www.amigales.cl/proplan-gato-urinario.html",
+        "button_xpath": "//*[@id=\"option-label-proplan_caturinary_size-1297-item-3565\"]"
+    },  
+        "petdotu108": {
+        "url": "https://www.amigales.cl/traumeel-alergias.html",
+        "button_xpath": "-"
+    },
+        "petdotu222": {
+        "url": "https://www.amigales.cl/acana-heritage-light-fit-perros.html",
+        "button_xpath": "//*[@id=\"option-label-acana_lighfit_perros_cantidad-675-item-1654\"]"
+    },
 }
 
 
@@ -758,7 +821,8 @@ for sku_key, info in sku2.items():
         if info["button_xpath"] != "-":
             try:
                 button = driver.find_element(By.XPATH, info["button_xpath"])
-                button.click()
+                driver.execute_script("arguments[0].click();", button)
+                # button.click()
                 time.sleep(1)
             except (NoSuchElementException, ElementClickInterceptedException) as e:
                 print(f"No se pudo hacer clic en el botón para el SKU {sku_key} - {e}")
