@@ -416,8 +416,8 @@ sku2 = {
         "button_xpath": "-"
     },
     "petdotu19": {
-        "url": "https://www.amigales.cl/fit-formula-perro-adulto-raza-pequena-10kg.html",
-        "button_xpath": "-"
+        "url": "https://www.amigales.cl/fit-formula-perro-adulto-raza-pequena.html",
+        "button_xpath": "//*[@id=\"option-label-fit_formula_dog-1788-item-5174\"]"
     },
     "petdotu126": {
         "url": "https://www.amigales.cl/fit-formula-perro-senior-raza-pequena-10kg.html",
@@ -457,7 +457,7 @@ sku2 = {
     },
     "petdotu124": {
         "url": "https://www.amigales.cl/josera-naturecat-gatos-junior.html",
-        "button_xpath": "Revisar"
+        "button_xpath": "//*[@id=\"option-label-josera_gatos_kilos-1359-item-3787\"]"
     },
     "petdotu156": {
         "url": "https://www.amigales.cl/josera-light-vital-perros-todas-razas.html",

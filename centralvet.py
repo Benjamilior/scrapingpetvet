@@ -128,7 +128,7 @@ sku = {
     "petdotu68": "https://www.centralvet.cl/para-perros/21816-nexgard-spectra-antiparasitario-perros-entre-76-a-15-kg-1-dosis.html",
     "petdotu67": "https://www.centralvet.cl/para-perros/26271-nexgard-spectra-antiparasitario-perros-entre-76-a-15-kg-3-dosis.html",
     "petdotu174": "https://www.centralvet.cl/laboratorio-virbac/21629-nutribound-perros-150-ml-virbac.html",
-    "petdotu165": "https://www.centralvet.cl/gatos-adultos/14724-20824-nutrience-original-gatos-adultos-polloarroz-integral.html#/1111111116-peso-25_kg",
+    "petdotu165": "https://www.centralvet.cl/gatos-adultos/26637-nutrience-original-gatos-adultos-polloarroz-integral-5kg.html",
     "petdotu175": "https://www.centralvet.cl/gatos-adultos/26617-nutrience-original-gatos-adultos-indoorhairball-5-kg.html",
     "petdotu157": "https://www.centralvet.cl/farmacia-para-perros/6236-oftavet-solucion-oftalmica-5-ml-dragpharma.html",
     "petdotu94": "https://www.centralvet.cl/farmacia-para-perros/21498-ohm-biomodulador-de-ansiedad-21-comprimidos-holliday.html",

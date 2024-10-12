@@ -3,7 +3,7 @@ import time
 
 # Lista de nombres de los scripts que deseas ejecutar
 scripts = [
-    "pk.py",
+    # "pk.py",
     "petcity.py",
     "bestforpets.py",
     "superzoobackup.py",

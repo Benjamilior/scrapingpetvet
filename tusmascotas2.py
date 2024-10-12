@@ -10,10 +10,7 @@ from selenium import webdriver
 from selenium.webdriver.chrome.options import Options
 from selenium.webdriver.common.by import By
 import pandas as pd
-from selenium.webdriver.support.ui import WebDriverWait
-from selenium.webdriver.support import expected_conditions as EC
-from selenium.webdriver.common.by import By
-from selenium.common.exceptions import TimeoutException, NoSuchElementException
+
 import gspread
 from oauth2client.service_account import ServiceAccountCredentials
 from google.oauth2.credentials import Credentials
@@ -45,94 +42,6 @@ driver = webdriver.Chrome(options=chrome_options)
 results = []
 
 sku = {
-    "petdotu194": "https://www.tusmascotas.cl/product/acana-classic-wild-coast-2kg/",
-    "petdotu7": "https://www.tusmascotas.cl/product/acana-classic-wild-coast/",
-    "petdotu160": "https://www.tusmascotas.cl/product/acana-heritage-free-run-poultry-pollo-pavo-y-huevo-59-kg/",
-    "petdotu197": "https://www.tusmascotas.cl/product/indoor-entree-cat-acana/",
-    "petdotu121": "https://www.tusmascotas.cl/product/acana-pork-and-squash/",
-    "petdotu176": "https://www.tusmascotas.cl/product/acana-regionals-wild-atlantic-pescado-45-kg/",
-    "petdotu6": "https://www.tusmascotas.cl/product/acana-classic-praire-poultry/",
-    "petdotu97": "https://www.tusmascotas.cl/product/adaptil-collar-m-l/",
-    "petdotu96": "https://www.tusmascotas.cl/product/adaptil-collar-s-m/",
-    "petdotu93": "https://www.tusmascotas.cl/product/adaptil-difusor-mas-repuesto/",
-    "petdotu205": "https://www.tusmascotas.cl/product/adaptil-repuesto/",
-    "petdotu135": "https://www.tusmascotas.cl/product/pipeta-advantage-para-gatos-4-kg-a-8-kg/",
-    "petdotu142": "https://www.tusmascotas.cl/product/pipeta-advantage-para-gatos-hasta-4-kg/",
-    "petdotu149": "https://www.tusmascotas.cl/product/advocate-felino-hasta-4kg/",
-    "petdotu115": "https://www.tusmascotas.cl/product/advocate-felino-4-a-8/",
-    "petdotu177": "https://www.tusmascotas.cl/product/advocate-perro-10-25kg/",
-    "petdotu196": "https://www.tusmascotas.cl/product/advocate-perro-25-40kg/",
-    "petdotu98": "https://www.tusmascotas.cl/product/allercalm-250-ml/",
-    "petdotu125": "https://www.tusmascotas.cl/product/america-litter-odor-seal-clean-pawz-15kg/",
-    "petdotu84": "https://www.tusmascotas.cl/product/america-litter-ultra-scooping-odor-seal-15-kg/",
-    "petdotu72": "https://www.tusmascotas.cl/product/america-litter-lavanda-15kg/",
-    "petdotu1": "https://www.tusmascotas.cl/product/apoquel-16mg-oclacitinib/",
-    "petdotu2": "https://www.tusmascotas.cl/product/apoquel-3-6mg-oclacitinib-20-comprimidos/",
-    "petdotu3": "https://www.tusmascotas.cl/product/apoquel-54mg-oclacitinib-receta-requerida/",
-    "petdotu82": "https://www.tusmascotas.cl/product/artri-tabs-60-comprimidos/",
-    "petdotu132": "https://www.tusmascotas.cl/product/belcando-finest-gf-senior-12-5kg/",
-    "petdotu49": "https://www.tusmascotas.cl/product/bil-jac-small-breed-adult-2-7kg/",
-    "petdotu9": "https://www.tusmascotas.cl/product/acana-bountiful-cath-cat-45-kg/",
-    "petdotu181": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-40-kg-a-56-kg/",
-    "petdotu28": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-20-kg-a-40-kg/",
-    "petdotu32": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-2-kg-a-45-kg/",
-    "petdotu30": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-45-kg-a-10-kg/",
-    "petdotu29": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-perros-10-kg-a-20-kg/",
-    "petdotu171": "https://www.tusmascotas.cl/product/bravery-pollo-adulto-razas-medianas-y-grandes-12kg/",
-    "petdotu53": "https://www.tusmascotas.cl/product/brit-medium-breed-lambrice/",
-    "petdotu52": "https://www.tusmascotas.cl/product/brit-adult-small-breed/",
-    "petdotu130": "https://www.tusmascotas.cl/product/brit-care-cat-grain-free-haircare-sabor-salmonchicken-7kg-c-100905/",
-    "petdotu134": "https://www.tusmascotas.cl/product/brit-care-cat-senior-2/",
-    "petdotu155": "https://www.tusmascotas.cl/product/brit-care-cat-sterilized-urinary-sabor-a-chicken-2kg/",
-    "petdotu55": "https://www.tusmascotas.cl/product/brit-care-cat-grain-free-sterilized-urinary-sabor-a-chicken-7kg-c-100903909/",
-    "petdotu110": "https://www.tusmascotas.cl/product/brit-care-cat-grain-free-sterelized-weight-control-duck-turkey-07-kg-c-100902/",
-    "petdotu116": "https://www.tusmascotas.cl/product/brit-adulto-salmon-3/",
-    "petdotu57": "https://www.tusmascotas.cl/product/brit-adulto-salmon-3/",
-    "petdotu133": "https://www.tusmascotas.cl/product/brit-adulto-salmon/",
-    "petdotu58": "https://www.tusmascotas.cl/product/brit-puppy-salmon/",
-    "petdotu136": "https://www.tusmascotas.cl/product/brit-puppy-salmon-2/",
-    "petdotu59": "https://www.tusmascotas.cl/product/brit-perro-senior-light-salmon-y-papa-12-kg/",
-    "petdotu139": "https://www.tusmascotas.cl/product/brit-sensitive-venison-potato-ciervo-12kg/",
-    "petdotu106": "https://www.tusmascotas.cl/product/brit-perro-puppy-cordero-y-arroz-12kg/",
-    "petdotu113": "https://www.tusmascotas.cl/product/brit-junior-cordero-y-arroz/",
-    "petdotu123": "https://www.tusmascotas.cl/product/brit-perro-junior-salmon-y-papa-12-kg/",
-    "petdotu51": "https://www.tusmascotas.cl/product/brit-perro-senior-lamb-y-rice-12kgs/",
-    "petdotu56": "https://www.tusmascotas.cl/product/brit-perro-weight-loss-conejo-y-arroz-12-kg/",
-    "petdotu140": "https://www.tusmascotas.cl/product/brit-perro-weight-loss-conejo-y-arroz-3-kg/",
-    "petdotu204": "https://www.tusmascotas.cl/product/nexgard-combo-cat-s-0-3ml-0-8-2-5kg-2/",
-    "petdotu168": "https://www.tusmascotas.cl/product/nexgard-combo-cat-l-0-9ml-2-5-7-5kg/",
-    "petdotu81": "https://www.tusmascotas.cl/product/calmer-para-perros-gatos/",
-    "petdotu178": "https://www.tusmascotas.cl/product/canigest-combi-16ml/",
-    "petdotu167": "https://www.tusmascotas.cl/product/clindabone-clindamicina-165mg-20-comp/#:~:text=Clindabone%20Clindamicina%20165mg%2020%20comp%20es%20indicada%20para%20el%20tratamiento,perfringens%20y%20muchas%20especies%20de",
-    "petdotu95": "https://www.tusmascotas.cl/product/dermisolona-10-comp-20-mg/",
-    "petdotu91": "https://www.tusmascotas.cl/product/dermisolona-suspension-oral-30ml/",
-    "petdotu193": "https://www.tusmascotas.cl/product/multivitaminico-doguivit-senior-30-comp/",
-    "petdotu188": "https://www.tusmascotas.cl/product/drontal-antiparasitario-interno-para-gatos-2-comprimidos/",
-    "petdotu143": "https://www.tusmascotas.cl/product/drontal-antiparasitario-interno-para-perros-de-hasta-10-kg/",
-    "petdotu185": "https://www.tusmascotas.cl/product/drontal-antiparasitario-interno-para-perros-de-35-kg/",
-    "petdotu14": "https://www.tusmascotas.cl/product/acana-duck-and-pear-2/",
-    "petdotu42": "https://www.tusmascotas.cl/product/feliway-difusor-mas-repuesto/",
-    "petdotu43": "https://www.tusmascotas.cl/product/feliway-friends-difusor-mas-repuesto/",
-    "petdotu41": "https://www.tusmascotas.cl/product/feliway-friends-repuesto/",
-    "petdotu39": "https://www.tusmascotas.cl/product/feliway-repuesto/",
-    "petdotu40": "https://www.tusmascotas.cl/product/feliway-spray/",
-    "petdotu22": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-1-comprimido-101-kg-a-20-kg/",
-    "petdotu10": "https://www.tusmascotas.cl/product/first-feast-cat-acana/",
-    "petdotu71": "https://www.tusmascotas.cl/product/flora-fix-pet-15g/",
-    "petdotu12": "https://www.tusmascotas.cl/product/acana-heritage-free-run-poultry-pollo-pavo-y-huevo-113-kg/",
-    "petdotu11": "https://www.tusmascotas.cl/product/acana-heritage-freshwater-fish-trucha-arcoiris-bagre-azul-y-perca-dorada-113-kg/",
-    "petdotu186": "https://www.tusmascotas.cl/product/glicopan-pet-125-ml/",
-    "petdotu208": "https://www.tusmascotas.cl/product/hemolitan-pet-60ml/",
-    "petdotu158": "https://www.tusmascotas.cl/product/hemolivet-30-capsulas/",
-    "petdotu87": "https://www.tusmascotas.cl/product/itraskin-suspension-oral-120-ml-receta-requerida/",
-    "petdotu144": "https://www.tusmascotas.cl/product/josera-balance-125kg-perro/",
-    "petdotu120": "https://www.tusmascotas.cl/product/josera-ente-kartoffel-adult-senior-125kg/",
-    "petdotu109": "https://www.tusmascotas.cl/product/josera-festival-adult-125kg/",
-    "petdotu124": "https://www.tusmascotas.cl/product/josera-nature-cat-adult-10kg/",
-    "petdotu141": "https://www.tusmascotas.cl/product/josera-naturelle-adult-sterilized-10kg/",
-    "petdotu117": "https://www.tusmascotas.cl/product/josidog-regular-josera-adult-18kg/",
-    # "petdotu156": "https://www.tusmascotas.cl/product/josera-light-y-vital-adult-15kg/",
-    "petdotu65": "https://www.tusmascotas.cl/product/laveta-carnitine-50ml/",
     "petdotu66": "https://www.tusmascotas.cl/product/laveta-taurina-50ml/",
     "petdotu164": "https://www.tusmascotas.cl/product/leonardo-adulto-duck-7-5kg/",
     "petdotu152": "https://www.tusmascotas.cl/product/leonardo-gato-adulto-light/",
@@ -177,6 +86,7 @@ sku = {
     "petdotu169": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-5-kg-a-10-kg/",
     "petdotu25": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-1-comprimido-51-kg-a-10-kg/",
     "petdotu24": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-5-kg-a-10-kg/",
+    "petdotu22": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-1-comprimido-101-kg-a-20-kg/",
     "petdotu23": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-10-kg-a-20-kg/",
     "petdotu21": "https://www.tusmascotas.cl/product/simparica-1-comprimidos/",
     "petdotu20": "https://www.tusmascotas.cl/product/simparica-antiparasitario-externo-3-comprimidos-20-kg-a-40-kg/",
@@ -214,66 +124,53 @@ sku = {
     "petdotu222": "https://www.tusmascotas.cl/product/acana-heritage-light-fit-formula-11-35kg/",
     "petdotu600": "https://www.tusmascotas.cl/product/leonardo-adulto-grain-free-3"
 }
-sku2 = {  "petdotu50": "https://www.tusmascotas.cl/product/bil-jac-puppy-dog-food-13-6kg/",
-    "petdotu33": "https://www.tusmascotas.cl/product/bravecto-antiparasitario-externo-para-gatos-12-kg-a-28-kg/",
-    "petdotu31": "https://www.tusmascotas.cl/product/bravecto-gatos-250mg-28-625kg/",
-    "petdotu54": "https://www.tusmascotas.cl/product/brit-perro-puppy-cordero-y-arroz-12kg/",
-    "petdotu204":"https://www.tusmascotas.cl/product/nexgard-combo-cat-s-0-3ml-0-8-2-5kg-2/",
-    "petdotu168":"https://www.tusmascotas.cl/product/nexgard-combo-cat-l-0-9ml-2-5-7-5kg/",
-    "petdotu600":"https://www.tusmascotas.cl/product/leonardo-adulto-grain-free-3/"}
+
 results = []
 
 for sku_key, url in sku.items():
     driver.get(url)
     precio_oferta = "No disponible"
     precio_normal = "No disponible"
-    stock = "Con Stock"
-    
+    stock= "Con Stock"
     try:
-        # Intenta obtener el precio de oferta con un timeout de 5 segundos
-        precio_oferta_element = WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/ins/span'))
-        )
+        # Intenta obtener el precio de oferta
+        precio_oferta_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/ins/span') #Cambiar
         precio_oferta = precio_oferta_element.text  # Guarda el precio de oferta
-        stock_element = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]')
+        stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
         stock = stock_element.text
-    except (TimeoutException, NoSuchElementException):
-        pass  # Si no se encuentra el precio de oferta, o si hay un timeout, pasa al siguiente bloque
-    
+    except NoSuchElementException:
+        pass  # Si no se encuentra el precio de oferta, se continuará con el siguiente bloque de código
+
     try:
-        # Intenta obtener el precio normal con un timeout de 5 segundos
-        precio_normal_element = WebDriverWait(driver, 5).until(
-            EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/del/span[2]'))
-        )
+        # Intenta obtener el precio normal
+        precio_normal_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/del/span[2]') #Cambiar
         precio_normal = precio_normal_element.text  # Guarda el precio normal
-        stock_element = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]')
+        stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
         stock = stock_element.text
-    except (TimeoutException, NoSuchElementException):
-        pass  # Si no se encuentra el precio normal, o si hay un timeout, pasa al siguiente bloque
-    
+    except NoSuchElementException:
+        pass  # Si no se encuentra el precio normal, se continuará con el siguiente bloque de código
+
     if precio_oferta == "No disponible" and precio_normal == "No disponible":
         try:
-            # Intenta el tercer XPath con un timeout de 5 segundos
-            precio_normal_element = WebDriverWait(driver, 5).until(
-                EC.presence_of_element_located((By.XPATH, '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/span[2]'))
-            )
+            # Si no se puede encontrar ni el precio de oferta ni el precio normal, intenta con el tercer XPath
+            precio_normal_element = driver.find_element("xpath", '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[1]/span[2]') #Cambiar
             precio_normal = precio_normal_element.text  # Guarda el precio normal
-            stock_element = driver.find_element(By.XPATH, '/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]')
+            stock_element= driver.find_element(By.XPATH,"/html/body/div[1]/div[1]/div/div/div/div[2]/div[1]/div[2]/div/div/div[2]/div/p[2]")
             stock = stock_element.text
-        except (TimeoutException, NoSuchElementException) as e:
+        except NoSuchElementException as e:
             print(f"No se pudo encontrar el precio en la URL {url} - {e}")
 
     data = {
         "SKU": sku_key,
         "Precio": precio_normal,
         "Precio_oferta": precio_oferta,
-        "Stock": stock
+        "Stock" :stock
     }
     results.append(data)
     print(data)
     time.sleep(0.5)
-
 driver.quit()
+
 
 df = pd.DataFrame(results)
 
