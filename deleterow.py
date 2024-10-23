@@ -12,14 +12,14 @@ import datetime
 
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
 KEY = 'key.json'
-NEW_SPREADSHEET_ID = '1lLfl_jSGUEtitfsezo_zz53Bn2zAzID73VtxIi4dKRo'  # ID de la hoja de cálculo
+NEW_SPREADSHEET_ID = '1S8jzZl4UehXDJxWuHfTSLftBnq3CKUXhgRGrJIShyhE'  # ID de la hoja de cálculo
 
 # Autenticación
 creds = service_account.Credentials.from_service_account_file(KEY, scopes=SCOPES)
 service = build('sheets', 'v4', credentials=creds)
 
 # Especifica la hoja y el rango que quieres modificar
-SHEET_ID = 82059109  # El ID de la hoja, asegúrate de que sea correcto
+
 RANGE_NAME = 'apipets!A:E'  # Rango que quieres vaciar, ajusta según tus necesidades
 time.sleep(30)
 # Limpiar el contenido de las primeras 5 columnas (A:E)

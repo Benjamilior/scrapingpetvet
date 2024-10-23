@@ -319,8 +319,9 @@ result = sheet.values().update(
 ).execute()
 
 # MANDAR DATOS A LA API ----------------------------------------------------------------------------------------------------
+SPREADSHEET_ID_API = '1S8jzZl4UehXDJxWuHfTSLftBnq3CKUXhgRGrJIShyhE'  
 # Obtener la última fila con datos en la nueva hoja
-result = sheet.values().get(spreadsheetId=NEW_SPREADSHEET_ID, range='apipets!A:A').execute() #Cambiar donde llega la info
+result = sheet.values().get(spreadsheetId=SPREADSHEET_ID_API, range='apipets!A:A').execute() #Cambiar donde llega la info
 values = result.get('values', [])
 last_row = len(values) + 1  # Obtener el índice de la última fila vacía
 
@@ -330,7 +331,7 @@ values = [[row['SKU'], competitor, row['Precio'],"Nada", row["Stock"]] for _, ro
 # Insertar los resultados en la nueva hoja después de la última fila
 update_range = f'apipets!A{last_row}:E{last_row + len(values) - 1}' #Cambiar
 result = sheet.values().update(
-    spreadsheetId=NEW_SPREADSHEET_ID,
+    spreadsheetId=SPREADSHEET_ID_API,
     range=update_range,
     valueInputOption='USER_ENTERED',
     body={'values': values}
