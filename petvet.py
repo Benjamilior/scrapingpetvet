@@ -13,6 +13,8 @@ import pandas as pd
 import json
 import datetime
 import requests
+
+SPREADSHEET_ID_API = '1S8jzZl4UehXDJxWuHfTSLftBnq3CKUXhgRGrJIShyhE'  
 competitor = "Petvet"  
 #Google Sheets
 SCOPES = ['https://www.googleapis.com/auth/spreadsheets']
